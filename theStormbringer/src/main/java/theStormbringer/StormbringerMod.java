@@ -60,7 +60,7 @@ public class StormbringerMod implements
     private static final String CARD_ENERGY_L = "StormbringerResources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = "StormbringerResources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = "StormbringerResources/images/charSelect/charBG.png";
-    
+
     // Typed Energy
     public static final String Dark_Energy = "StormbringerResources/images/512/Dark/Dark_512.png";
     public static final String Dark_Energy_Small =  "StormbringerResources/images/512/Dark/Dark_Small.png";
