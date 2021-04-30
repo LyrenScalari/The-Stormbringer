@@ -1,0 +1,35 @@
+{
+  "theStormbringer:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage"
+  },
+  "theStormbringer:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block"
+  },
+  "theStormbringer:Forwarn": {
+    "NAME": "Mind Reader",
+    "DESCRIPTION": "Scry !M! NL Gain !B! Block NL Gain [PsyEn]"
+  },
+  "theStormbringer:Flamethrower": {
+    "NAME": "Flamethrower",
+    "DESCRIPTION": "Deal !D! damage and apply !M! thestormbringer:Burn to ALL enemies"
+  },
+  "theStormbringer:SunnyDay": {
+    "NAME": "Sunny Day",
+    "DESCRIPTION": "thestormbringer:Summon thestormbringer:Harsh\u00a0Sunlight NL thestormbringer:Sunny: Gain !M! [FireEn]"
+  },
+  "theStormbringer:Thunderbolt": {
+    "NAME": "Thunderbolt",
+    "DESCRIPTION": "Deal !D! damage. thestormbringer:Current: Gain [E]"
+  },
+  "theStormbringer:Psywave": {
+    "NAME": "Psywave",
+    "DESCRIPTION": "Deal !D! - !Stormbringer:D2! damage NL Gain [PsyEn] NL thestormbringer:Empower [PsyEn] !M! : Deal NL !Stormbringer:D2! damage twice instead."
+  },
+  "theStormbringer:Bite": {
+    "NAME": "Bite",
+    "DESCRIPTION": "Deal !D! damage. NL apply !M! Weak NL Gain [DarkEn]"
+  }
+}
+

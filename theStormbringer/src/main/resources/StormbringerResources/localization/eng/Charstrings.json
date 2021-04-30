@@ -1,0 +1,13 @@
+{
+  "${ModID}:theStormbringer": {
+    "NAMES": [
+      "The Stormbringer",
+      "the Stormbringer"
+    ],
+    "TEXT": [
+      "Heralding doom marking all they touch, the Stormbringer is followed by a wave of despair, deadly storms, NL great waves and the ground itself shatters in the places this wanderer visits.",
+      "NL You call upon Disaster.",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~Doom~ ~Bringer,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  }
+}

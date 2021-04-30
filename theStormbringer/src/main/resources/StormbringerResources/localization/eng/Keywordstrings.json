@@ -1,0 +1,73 @@
+[
+  {
+    "NAMES": [
+      "keyword",
+      "keywords"
+    ],
+    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+  },
+  {
+    "PROPER_NAME": "Multiword Keyword",
+    "NAMES": [
+      "Multiword Keyword",
+      "multiword_keyword",
+      "multiword_keywords",
+      "multikey",
+      "multikeyword"
+    ],
+    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  },
+  {
+    "NAMES": [
+      "Burn",
+      "burn",
+      "burned",
+      "Burned"
+    ],
+    "DESCRIPTION": "Burned creatures take #b10% of their Maximum HP as damage at the end of their turn. Burn is reduced by #b1 each turn."
+  },
+  {
+    "NAMES": [
+      "Sunny",
+      "sunny"
+    ],
+    "DESCRIPTION": "Bonus effect if played during #yHarsh #ySunlight."
+  },
+  {
+    "NAMES": [
+      "Current",
+      "current"
+    ],
+    "DESCRIPTION": "Bonus effect if played during #yHeavy #yRain."
+  },
+  {
+    "NAMES": [
+      "Empower",
+      "empower"
+    ],
+    "DESCRIPTION": "If you have at least X of the shown typed energy, spend it and get a bonus effect."
+  },
+  {
+    "NAMES": [
+      "Summon",
+      "summon"
+    ],
+    "DESCRIPTION": "Summoning weather changes the active weather effect to the listed weather effect."
+  },
+  {
+    "NAMES": [
+      "Harsh\u00a0Sunlight",
+      "harsh\u00a0sunlight"
+    ],
+    "DESCRIPTION": "#yWeather: Fire cards are more powerful and #ySunny effects activate."
+  },
+  {
+    "NAMES": [
+      "Foresee",
+      "foresee",
+      "Foreseen",
+      "foreseen"
+    ],
+    "DESCRIPTION": "Forseen effects occur X turns later on the selected target."
+  }
+]
