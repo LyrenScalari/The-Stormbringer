@@ -37,4 +37,7 @@ public class BurnPower extends AbstractPower {
         addToBot(new DamageAction(owner,new DamageInfo(owner,((int)Math.floor(owner.maxHealth*0.10)), DamageInfo.DamageType.THORNS)));
         addToBot(new ReducePowerAction(owner,owner,this,1));
     }
+    public void updateDescription() {
+        this.description = DESCRIPTIONS[0];
+    }
 }

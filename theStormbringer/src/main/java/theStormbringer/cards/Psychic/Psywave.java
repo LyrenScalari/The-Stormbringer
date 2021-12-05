@@ -7,13 +7,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import theStormbringer.cards.AbstractDefaultCard;
+import theStormbringer.actions.EmpowerAction;
+import theStormbringer.actions.GainTypedEnergyAction;
+import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
 import theStormbringer.util.TypeEnergyHelper;
 
+import java.util.EnumMap;
+
 import static theStormbringer.StormbringerMod.*;
 
-public class Psywave extends AbstractDefaultCard {
+public class Psywave extends AbstractStormbringerCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -57,19 +61,19 @@ public class Psywave extends AbstractDefaultCard {
         secondDamage = baseSecondDamage = 9;
         magicNumber = baseMagicNumber = 3;
         setOrbTexture(Psy_Energy,Psy_Energy_Portrait);
+        energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
+        energyCosts.put(TypeEnergyHelper.Mana.Psychic, magicNumber);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (TypeEnergyHelper.PsyEnergy < magicNumber) {
+        if (TypeEnergyHelper.getManaByEnum(TypeEnergyHelper.Mana.Psychic) < magicNumber) {
             int RngDmg = AbstractDungeon.miscRng.random(damage, secondDamage);
             addToBot(new DamageAction(m, new DamageInfo(p, RngDmg)));
-            TypeEnergyHelper.PsyEnergy += 1;
+            addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Psychic,1));
         } else {
-            TypeEnergyHelper.PsyEnergy -= magicNumber;
-            addToBot(new DamageAction(m, new DamageInfo(p, secondDamage)));
-            addToBot(new DamageAction(m, new DamageInfo(p, secondDamage)));
+            addToBot(new EmpowerAction(energyCosts,()->new DamageAction(m, new DamageInfo(p, secondDamage))));
         }
 
     }
@@ -77,11 +81,9 @@ public class Psywave extends AbstractDefaultCard {
     // Upgraded stats.
     @Override
     public void upp() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeSecondDamage(2);
-            initializeDescription();
-        }
+        upgradeName();
+        upgradeDamage(UPGRADE_PLUS_DMG);
+        upgradeSecondDamage(2);
+        initializeDescription();
     }
 }

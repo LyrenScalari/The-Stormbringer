@@ -1,0 +1,80 @@
+[
+  {
+    "NAMES": [
+      "keyword",
+      "keywords"
+    ],
+    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+  },
+  {
+    "PROPER_NAME": "Multiword Keyword",
+    "NAMES": [
+      "Multiword Keyword",
+      "multiword_keyword",
+      "multiword_keywords",
+      "multikey",
+      "multikeyword"
+    ],
+    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  },
+  {
+    "NAMES": [
+      "Burn",
+      "burn",
+      "burned",
+      "Burned"
+    ],
+    "DESCRIPTION": "Burned creatures take #b10% of their Maximum HP as damage at the end of their turn. Burn is reduced by #b1 each turn."
+  },
+  {
+    "NAMES": [
+      "Empower",
+      "empower"
+    ],
+    "DESCRIPTION": "If you have at least X of the shown #yMana, spend it and get a bonus effect."
+  },
+  {
+    "NAMES": [
+      "Prismatic\u00a0Barrier",
+      "prismatic\u00a0barrier"
+    ],
+    "DESCRIPTION": "Take less damage from all sources. #yPrismatic #yBarrier is lost when #yHail subsides"
+  },
+  {
+    "NAMES": [
+      "Harsh\u00a0Sunlight",
+      "harsh\u00a0sunlight"
+    ],
+    "DESCRIPTION": "#yWeather: Damage dealt by cards increased, #ySunny effects activate."
+  },
+  {
+    "NAMES": [
+      "Heavy\u00a0Rain",
+      "heavy\u00a0rain"
+    ],
+    "DESCRIPTION": "#yWeather: Block gain from cards increased, #yCurrent effects activate."
+  },
+  {
+    "NAMES": [
+      "Ripple",
+      "ripple"
+    ],
+    "DESCRIPTION": "Play the top X cards that cost less than this in your draw pile and #yExhaust them."
+  },
+  {
+    "NAMES": [
+      "Hailstorm",
+      "hailstorm",
+      "Hail",
+      "hail"
+    ],
+    "DESCRIPTION": "#yWeather: #yCrystalize effects activate. NL At the end of your turn random enemies take damage."
+  },
+  {
+    "NAMES": [
+      "Sandstorm",
+      "sandstorm"
+    ],
+    "DESCRIPTION": "#yWeather: #yAbrasive effects activate. NL At the end of your turn gain block."
+  }
+]

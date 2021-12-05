@@ -1,6 +1,7 @@
 package theStormbringer.util;
 
 import theStormbringer.StormbringerMod;
+import theStormbringer.util.WeatherEffects.ClearWeather;
 
 public class WeatherPanel extends EasyInfoDisplayPanel {
 
@@ -10,49 +11,29 @@ public class WeatherPanel extends EasyInfoDisplayPanel {
 
     @Override
     public String getTitle() {
-        if (WeatherHelper.CurrentWeather == WeatherHelper.RainWeather){
-            return "Weather : Heavy Rainfall";
-
-        } else if  (WeatherHelper.CurrentWeather == WeatherHelper.SunWeather){
-            return "Weather : Harsh Sunlight";
-
-        } else if  (WeatherHelper.CurrentWeather == WeatherHelper.HailWeather){
-            return "Weather : Hailstorm";
-
-        } else if  (WeatherHelper.CurrentWeather == WeatherHelper.SandWeather){
-            return "Weather : Sandstorm";
+        if (StormbringerMod.currentWeather != null){
+            return StormbringerMod.currentWeather.name;
         }
 
-        return WeatherHelper.ClearWeather;
+        return "";
     }
 
     @Override
     public String getDescription() {
         String s = "";
-        if (WeatherHelper.CurrentWeather == WeatherHelper.ClearWeather){
-            s += "No effects";
-
-        } else if  (WeatherHelper.CurrentWeather == WeatherHelper.RainWeather){
-            s += "Rain card power #b+10%. NL ";
-            s += "At the start of your turn gain 1 Rain Energy. NL";
-            s += "#yCurrent effects activate.";
-
-        } else if  (WeatherHelper.CurrentWeather == WeatherHelper.SunWeather){
-            s += "Fire card power #b+10%. NL ";
-            s += "At the start of your turn gain 1 Fire Energy. NL ";
-            s += "#ySunny effects activate.";
-
-        } else if  (WeatherHelper.CurrentWeather == WeatherHelper.HailWeather){
-            s += "All enemies are striken by the hail at the end of your turn, and take #b15% of their Current HP in damage. NL ";
-            s += "At the start of your turn gain 1 Ice Energy. NL ";
-            s += "#yCrystalize effects activate.";
-
-        } else if  (WeatherHelper.CurrentWeather == WeatherHelper.SandWeather){
-            s += "All enemies are buffed by the sand at the end of your turn, and take #b15% of their Current HP in damage. NL ";
-            s += "At the start of your turn gain 1 Rock Energy. NL ";
-            s += "#yAbrasive effects activate.";
-
-        }
+        if (StormbringerMod.currentWeather != null && !(StormbringerMod.currentWeather instanceof ClearWeather)){
+            s += StormbringerMod.currentWeather.updateDescription();
+                s += " NL ";
+                if (StormbringerMod.currentWeather.weathertimer > 1) {
+                    s += StormbringerMod.currentWeather.weathertimer;
+                    s += " turns remaining of ";
+                    s += StormbringerMod.currentWeather.name;
+                    s += ".";
+                } else {
+                    s += StormbringerMod.currentWeather.name;
+                    s += " ends next turn.";
+                }
+        } else return "NORENDER";
         if (s.isEmpty()){
             return "NORENDER";
         }

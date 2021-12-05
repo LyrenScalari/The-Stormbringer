@@ -9,42 +9,21 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import theStormbringer.cards.AbstractDefaultCard;
+import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
 import theStormbringer.powers.BurnPower;
 
 import static theStormbringer.StormbringerMod.*;
 
-public class Flamethrower extends AbstractDefaultCard {
+public class Flamethrower extends AbstractStormbringerCard {
 
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * Strike Deal 7(9) damage.
-     */
-
-    // TEXT DECLARATION
 
     public static final String ID = makeID(Flamethrower .class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-
     public static final String IMG = makeCardPath("Attack.png");
-    // Setting the image as as easy as can possibly be now. You just need to provide the image name
-    // and make sure it's in the correct folder. That's all.
-    // There's makeCardPath, makeRelicPath, power, orb, event, etc..
-    // The list of all of them can be found in the main StormbringerMod.java file in the
-    // ==INPUT TEXTURE LOCATION== section under ==MAKE IMAGE PATHS==
-
-
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-
-    // /TEXT DECLARATION/
-
-
-    // STAT DECLARATION
-
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheStormbringer.Enums.COLOR_NAVY;
@@ -73,10 +52,7 @@ public class Flamethrower extends AbstractDefaultCard {
     // Upgraded stats.
     @Override
     public void upp() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPGRADE_PLUS_DMG);
-            initializeDescription();
-        }
+        upgradeDamage(UPGRADE_PLUS_DMG);
+        initializeDescription();
     }
 }

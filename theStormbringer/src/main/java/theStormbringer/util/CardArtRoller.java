@@ -13,7 +13,7 @@ import com.github.tommyettinger.colorful.Shaders;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
-import theStormbringer.cards.AbstractDefaultCard;
+import theStormbringer.cards.AbstractStormbringerCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class CardArtRoller {
     public static HashMap<String, ReskinInfo> infos = new HashMap<String, ReskinInfo>();
     private static ShaderProgram shade = new ShaderProgram(Shaders.vertexShaderHSLC, Shaders.fragmentShaderHSLC);
 
-    public static void computeCard(AbstractDefaultCard c) {
+    public static void computeCard(AbstractStormbringerCard c) {
         c.portrait = doneCards.computeIfAbsent(c.cardID, key -> {
             ReskinInfo r = infos.computeIfAbsent(key, key2 -> {
                 Random rng = new Random((long) c.cardID.hashCode());

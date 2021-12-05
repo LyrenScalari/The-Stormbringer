@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import theStormbringer.cards.AbstractDefaultCard;
+import theStormbringer.actions.GainTypedEnergyAction;
+import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
+import theStormbringer.util.TypeEnergyHelper;
 
 import static theStormbringer.StormbringerMod.*;
 
-public class Forwarn extends AbstractDefaultCard {
+public class Forwarn extends AbstractStormbringerCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -46,6 +48,7 @@ public class Forwarn extends AbstractDefaultCard {
         super(ID,COST,TYPE,RARITY,TARGET,COLOR);
         baseBlock = BLOCK;
         magicNumber = baseMagicNumber = 2;
+        secondMagic = baseSecondMagic = 1;
         setOrbTexture(Psy_Energy,Psy_Energy_Portrait);
     }
 
@@ -54,16 +57,14 @@ public class Forwarn extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ScryAction(magicNumber));
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
+        addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Psychic,secondMagic));
     }
 
     //Upgraded stats.
     @Override
     public void upp() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
-            upgradeBlock(UPGRADE_PLUS_BLOCK);
-            initializeDescription();
-        }
+        upgradeMagicNumber(1);
+        upgradeBlock(UPGRADE_PLUS_BLOCK);
+        initializeDescription();
     }
 }

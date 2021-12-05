@@ -1,0 +1,34 @@
+{
+  "theStormbringer:Clear": {
+    "NAME": "Clear",
+    "DESCRIPTION": [
+      "No effects."
+    ]
+  },
+  "theStormbringer:HarshSunlight": {
+    "NAME": "Harsh Sunlight",
+    "DESCRIPTION": [
+      "Damage dealt increased by #b"
+    ]
+  },
+  "theStormbringer:HeavyRain": {
+    "NAME": "Heavy Rain",
+    "DESCRIPTION": [
+      "#bWater attacks deal 25% more damage. NL #rFire attacks deal 25% less damage."
+    ]
+  },
+  "theStormbringer:Hailstorm": {
+    "NAME": "Hailstorm",
+    "DESCRIPTION": [
+      "At the end of your turn deal #b", " damage to a random enemy #b",
+      " times."
+    ]
+  },
+  "theStormbringer:Sandstorm": {
+    "NAME": "Sandstorm",
+    "DESCRIPTION": [
+      "At the end of your turn gain #b",
+      " block."
+    ]
+  }
+}

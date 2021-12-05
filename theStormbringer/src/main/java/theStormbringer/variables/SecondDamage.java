@@ -2,7 +2,9 @@ package theStormbringer.variables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import theStormbringer.cards.AbstractDefaultCard;
+import theStormbringer.cards.AbstractStormbringerCard;
+
+import static theStormbringer.StormbringerMod.makeID;
 
 public class SecondDamage extends DynamicVariable {
 
@@ -10,30 +12,27 @@ public class SecondDamage extends DynamicVariable {
 
     @Override
     public String key() {
-        return "Stormbringer:D2";
-        // This is what you put between "!!" in your card strings to actually display the number.
-        // You can name this anything (no spaces), but please pre-phase it with your mod name as otherwise mod conflicts can occur.
-        // Remember, we're using makeID so it automatically puts "theDefault:" (or, your id) before the name.
+        return makeID("D2");
     }
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((AbstractDefaultCard) card).isDamageModified;
+        return ((AbstractStormbringerCard) card).isDamageModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((AbstractDefaultCard) card).secondDamage;
+        return ((AbstractStormbringerCard) card).secondDamage;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((AbstractDefaultCard ) card).baseSecondDamage;
+        return ((AbstractStormbringerCard) card).baseSecondDamage;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((AbstractDefaultCard ) card).upgradedSecondDamage;
+        return ((AbstractStormbringerCard) card).upgradedSecondDamage;
     }
 }

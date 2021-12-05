@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -26,6 +27,7 @@ import theStormbringer.cards.*;
 import theStormbringer.cards.Dark.Bite;
 import theStormbringer.cards.Fire.Flamethrower;
 import theStormbringer.cards.Psychic.Forwarn;
+import theStormbringer.relics.CrackedIris;
 
 import java.util.ArrayList;
 
@@ -38,26 +40,26 @@ import static theStormbringer.characters.TheStormbringer.Enums.COLOR_NAVY;
 
 public class TheStormbringer extends CustomPlayer {
     private static final String[] orbTextures = {
-            modID + "Resources/images/char/mainChar/orb/layer1.png",
-            modID + "Resources/images/char/mainChar/orb/layer2.png",
-            modID + "Resources/images/char/mainChar/orb/layer3.png",
-            modID + "Resources/images/char/mainChar/orb/layer4.png",
-            modID + "Resources/images/char/mainChar/orb/layer5.png",
-            modID + "Resources/images/char/mainChar/orb/layer6.png",
-            modID + "Resources/images/char/mainChar/orb/layer1d.png",
-            modID + "Resources/images/char/mainChar/orb/layer2d.png",
-            modID + "Resources/images/char/mainChar/orb/layer3d.png",
-            modID + "Resources/images/char/mainChar/orb/layer4d.png",
-            modID + "Resources/images/char/mainChar/orb/layer5d.png",};
-    static final String ID = makeID("TheTodo"); //TODO: Change this
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer1.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer2.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer3.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer4.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer5.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer6.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer1d.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer2d.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer3d.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer4d.png",
+            modID + "Resources/images/mainChar/defaultCharacter/orb/layer5d.png",};
+    static final String ID = makeID("TheStormbringer"); //TODO: Change this
     public static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     public static final String[] NAMES = characterStrings.NAMES;
     public static final String[] TEXT = characterStrings.TEXT;
-
+    public static float[] layerSpeeds = new float[]{-20.0F, 20.0F, -40.0F, 40.0F, 0.0F};
 
     public TheStormbringer(String name, PlayerClass setClass) {
-        super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null), new SpriterAnimation(
-                modID + "Resources/images/char/mainChar/Stormbringer/Stormbringer.scml"));
+        super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/mainChar/defaultCharacter/orb/vfx.png", layerSpeeds), new SpriterAnimation(
+                modID + "Resources/images/mainChar/Stormbringer/Stormbringer.scml"));
         initializeClass(null,
                 SHOULDER1,
                 SHOULDER2,
@@ -72,7 +74,7 @@ public class TheStormbringer extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                80, 80, 0, 99, 5, this, getStartingRelics(),
+                75, 75, 0, 99, 5, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
 
@@ -85,11 +87,16 @@ public class TheStormbringer extends CustomPlayer {
         for (int i = 0; i < 4; i++) {
             retVal.add(Defend.ID);
         }
+
+        retVal.add(Bite.ID);
+        retVal.add(Forwarn.ID);
+
         return retVal;
     }
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
+        retVal.add(CrackedIris.ID);
         return retVal;
     }
 
@@ -107,7 +114,7 @@ public class TheStormbringer extends CustomPlayer {
 
     @Override
     public int getAscensionMaxHPLoss() {
-        return 8;
+        return 5;
     }
 
     @Override
@@ -117,7 +124,7 @@ public class TheStormbringer extends CustomPlayer {
 
     @Override
     public Color getCardTrailColor() {
-        return characterColor.cpy();
+        return STORMBRINGER_NAVY.cpy();
     }
 
     @Override
@@ -132,7 +139,21 @@ public class TheStormbringer extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        System.out.println("YOU NEED TO SET getStartCardForEvent() in your " + getClass().getSimpleName() + " file!");
+        return chooseEventStarterCard();
+    }
+
+    public AbstractCard chooseEventStarterCard(){
+        switch (AbstractDungeon.miscRng.random(0,1)){
+            case 0 :{
+                System.out.println("Event Starter Card : Forwarn");
+                return new Forwarn();
+            }
+            case 1 : {
+                System.out.println("Event Starter Card : Bite");
+                return new Bite();
+            }
+        }
+        System.out.println("Random Starting card for event assignment Failed!");
         return null;
     }
 
@@ -148,12 +169,12 @@ public class TheStormbringer extends CustomPlayer {
 
     @Override
     public Color getCardRenderColor() {
-        return characterColor.cpy();
+        return STORMBRINGER_NAVY.cpy();
     }
 
     @Override
     public Color getSlashAttackColor() {
-        return characterColor.cpy();
+        return STORMBRINGER_NAVY.cpy();
     }
 
     @Override

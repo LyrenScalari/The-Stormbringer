@@ -1,0 +1,50 @@
+{
+"theStormbringer:CommonPower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
+},
+"theStormbringer:RarePower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
+},
+        "theStormbringer:Burn": {
+                "NAME": "Burn",
+                "DESCRIPTIONS": ["At the end of your turn, take damage equal to #b10% of your Maximum HP."]
+        },
+        "theStormbringer:Smoulder": {
+                "NAME": "Smoulder",
+                "DESCRIPTIONS": ["At the start of your turn, activate your #yBurn twice."]
+        },
+        "theStormbringer:Resistance": {
+                "NAME": "Prismatic Barrier",
+                "DESCRIPTIONS": ["Take #b"," Less damage. remove this when the weather is no longer #yHail"]
+        },
+        "theStormbringer:Clarity": {
+                "NAME": "Clarity",
+                "DESCRIPTIONS": ["Increase #yClear #yWater buffs gained by #b"]
+        },
+        "theStormbringer:WaterPulse": {
+                "NAME": "Clear Water",
+                "DESCRIPTIONS": ["Next Turn, Deal #b", " damage to a random enemy and gain #b"," Water Energy."]
+        },
+        "theStormbringer:AquaRing": {
+                "NAME": "Clear Water",
+                "DESCRIPTIONS": ["Next Turn, gain #b", " #yBlock"]
+        },
+        "theStormbringer:SnowWarning": {
+                "NAME": "Snow Warning",
+                "DESCRIPTIONS": ["#yHail lasts #b", " extra turns"]
+        },
+        "theStormbringer:PowderSnow": {
+                "NAME": "Powder Snow",
+                "DESCRIPTIONS": ["#yHail hits #b", " extra times"]
+        },
+        "theStormbringer:IcePower": {
+                "NAME": "Ice Power",
+                "DESCRIPTIONS": ["#yHail deals #b", " extra damage"]
+        },
+        "theStormbringer:Surf": {
+                "NAME": "Clear Water",
+                "DESCRIPTIONS": ["Next Turn, draw #b", " cards"]
+        }
+}

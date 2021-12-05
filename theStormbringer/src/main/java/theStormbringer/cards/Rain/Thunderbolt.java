@@ -2,18 +2,22 @@ package theStormbringer.cards.Rain;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import theStormbringer.cards.AbstractDefaultCard;
+import theStormbringer.actions.GainTypedEnergyAction;
+import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
+import theStormbringer.util.TypeEnergyHelper;
+import theStormbringer.util.WeatherEffects.HeavyRain;
 
 import static theStormbringer.StormbringerMod.*;
 
-public class Thunderbolt extends AbstractDefaultCard {
+public class Thunderbolt extends AbstractStormbringerCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -63,7 +67,10 @@ public class Thunderbolt extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new VFXAction(new LightningEffect(m.drawX,m.drawY)));
         addToBot(new DamageAction(m,new DamageInfo(p,damage)));
-
+        if (currentWeather instanceof HeavyRain){
+            addToBot(new GainEnergyAction(magicNumber));
+            addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Electric,magicNumber));
+        }
     }
 
     // Upgraded stats.

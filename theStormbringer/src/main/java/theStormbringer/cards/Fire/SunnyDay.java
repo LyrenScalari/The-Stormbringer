@@ -4,16 +4,20 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import theStormbringer.cards.AbstractDefaultCard;
+import theStormbringer.StormbringerMod;
+import theStormbringer.actions.ChangeWeatherAction;
+import theStormbringer.actions.GainTypedEnergyAction;
+import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
 import theStormbringer.util.TypeEnergyHelper;
+import theStormbringer.util.WeatherEffects.HarshSunlight;
 
 import static theStormbringer.StormbringerMod.*;
 import static theStormbringer.StormbringerMod.Fire_Energy_Portrait;
 import static theStormbringer.util.WeatherHelper.CurrentWeather;
 import static theStormbringer.util.WeatherHelper.SunWeather;
 
-public class SunnyDay extends AbstractDefaultCard {
+public class SunnyDay extends AbstractStormbringerCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -62,18 +66,17 @@ public class SunnyDay extends AbstractDefaultCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (!CurrentWeather.equals(SunWeather)){
-            CurrentWeather = SunWeather;
-        } else TypeEnergyHelper.FireEnergy += magicNumber;
+        addToBot(new ChangeWeatherAction(new HarshSunlight()));
+        if (currentWeather instanceof HarshSunlight) {
+            addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Fire,magicNumber));
+        }
     }
 
     // Upgraded stats.
     @Override
     public void upp() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPGRADE_PLUS_DMG);
-            initializeDescription();
-        }
+        upgradeName();
+        upgradeBaseCost(0);
+        initializeDescription();
     }
 }

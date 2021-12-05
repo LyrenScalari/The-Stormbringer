@@ -2,6 +2,7 @@ package theStormbringer.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import theStormbringer.StormbringerMod;
@@ -9,7 +10,7 @@ import theStormbringer.util.TexLoader;
 
 import static theStormbringer.StormbringerMod.makeID;
 
-public class AbstractEasyPower extends AbstractPower {
+public class AbstractEasyPower extends TwoAmountPower {
     public AbstractEasyPower(String NAME, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         this.ID = makeID(NAME.replaceAll("([ ])", ""));
         this.isTurnBased = isTurnBased;
@@ -32,5 +33,9 @@ public class AbstractEasyPower extends AbstractPower {
         }
 
         this.updateDescription();
+    }
+    public AbstractEasyPower(String NAME, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount, int amount2) {
+        this(NAME,powerType,isTurnBased,owner,amount);
+        this.amount2 = amount2;
     }
 }

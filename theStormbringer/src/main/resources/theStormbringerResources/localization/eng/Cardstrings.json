@@ -1,0 +1,112 @@
+{
+  "theStormbringer:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage"
+  },
+  "theStormbringer:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block"
+  },
+
+  "theStormbringer:Forwarn": {
+    "NAME": "Mind Reader",
+    "DESCRIPTION": "Scry !M! NL Gain !B! Block NL Gain [PsyEn]"
+  },
+  "theStormbringer:Psywave": {
+    "NAME": "Psywave",
+    "DESCRIPTION": "Deal !D! - !theStormbringer:D2! damage NL Gain [PsyEn] NL thestormbringer:Empower: Deal NL !theStormbringer:D2! damage instead."
+  },
+
+  "theStormbringer:Flamethrower": {
+    "NAME": "Flamethrower",
+    "DESCRIPTION": "Deal !D! damage and apply !M! thestormbringer:Burn to ALL enemies"
+  },
+  "theStormbringer:MysticalFire": {
+    "NAME": "Mystical Fire",
+    "DESCRIPTION": "Deal !D! damage. NL target takes thestormbringer:Burn damage at the start of it's turn for !M! Turns."
+  },
+  "theStormbringer:SunnyDay": {
+    "NAME": "Sunny Day",
+    "DESCRIPTION": "Summon thestormbringer:Harsh\u00a0Sunlight NL if *Weather is *Harsh *Sunlight Gain 3 [FireEn]"
+  },
+
+  "theStormbringer:RainDance": {
+    "NAME": "Rain Dance",
+    "DESCRIPTION": "Summon thestormbringer:Heavy\u00a0Rain NL if *Weather is *Heavy *Rain Gain 3 [WaterEn]"
+  },
+  "theStormbringer:AquaRing": {
+    "NAME": "Aqua Ring",
+    "DESCRIPTION": "Gain !B! Block. NL Gain [WaterEn] NL thestormbringer:Empower: Next Turn, Gain !B! Block."
+  },
+  "theStormbringer:Thunderbolt": {
+    "NAME": "Thunderbolt",
+    "DESCRIPTION": "Deal !D! damage. NL If the *Weather is *Heavy *Rain Gain [ElectricEn] [E]"
+  },
+  "theStormbringer:Spark": {
+    "NAME": "Spark",
+    "DESCRIPTION": "Apply !M! Weak. NL Gain !theStormbringer:M2! [ElectricEn]"
+  },
+  "theStormbringer:WaterPulse": {
+    "NAME": "Water Pulse",
+    "DESCRIPTION": "Deal !D! damage. NL Next Turn, Deal !D! damage to a random enemy and Gain [WaterEn]"
+  },
+  "theStormbringer:Surf": {
+    "NAME": "Surf",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL thestormbringer:Empower: Next Turn, Draw !M! cards."
+  },
+  "theStormbringer:Hurricane": {
+    "NAME":"Hurricane",
+    "DESCRIPTION": "can only be played during thestormbringer:Heavy Rain. NL Deal !D! damage to ALL enemies twice. NL thestormbringer:Empower: Hits 2 additional times.",
+    "EXTENDED_DESCRIPTION": ["The Conditions are wrong for this... NL (#rRequires #rHeavy #rRain)"]
+  },
+
+  "theStormbringer:Hail": {
+    "NAME": "Hail",
+    "DESCRIPTION": "Summon thestormbringer:Hail NL If the *Weather is thestormbringer:Hail Gain !M! [IceEn] NL thestormbringer:Hail remains !M! more turns."
+  },
+  "theStormbringer:AuroraBeam": {
+    "NAME": "Aurora Beam",
+    "DESCRIPTION": "Deal !D! damage. NL Gain [IceEn] NL If the *Weather is thestormbringer:Hail Gain !M! thestormbringer:Prismatic Barrier."
+  },
+  "theStormbringer:IceBall": {
+    "NAME": "Ice Ball",
+    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Empower: Double this cards damage this combat."
+  },
+  "theStormbringer:IceShard": {
+    "NAME": "Ice Shard",
+    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Empower: Deal !theStormbringer:D2! damage instead."
+  },
+  "theStormbringer:IcyWind": {
+    "NAME": "Icy Wind",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL thestormbringer:Empower: Apply !theStormbringer:M2! Weak to ALL enemies."
+  },
+  "theStormbringer:Blizzard": {
+    "NAME": "Blizzard",
+    "DESCRIPTION": "thestormbringer:Hail deals !M! more damage and hits !theStormbringer:M2! extra times."
+  },
+  "theStormbringer:IceBeam": {
+    "NAME": "Ice Beam",
+    "DESCRIPTION": "gain !B! Block NL Summon thestormbringer:Hail NL If the *Weather is thestormbringer:Hail *Hail remains !M! extra turns and deals !theStormbringer:M2! extra damage."
+  },
+  "theStormbringer:IcicleCrash": {
+    "NAME": "Icicle Crash",
+    "DESCRIPTION": "Deal !D! Damage to all enemies. NL Gain [IceEn] NL extra thestormbringer:Hail damage increases this cards damage and [IceEn] Gain."
+  },
+  "theStormbringer:AuroraVeil": {
+    "NAME": "Aurora Veil",
+    "DESCRIPTION": "Gain !B! Block. NL If the *Weather is thestormbringer:Hail Gain !M! thestormbringer:Prismatic\u00a0Barrier."
+  },
+  "theStormbringer:MegaBurst": {
+    "NAME": "MegaBurst",
+    "DESCRIPTION": "Gain [WaterEn] [FireEn] [IceEn] [DarkEn] [PsyEn] [FaeEn] [ElectricEn] NL Exhaust"
+  },
+  "theStormbringer:Bite": {
+    "NAME": "Bite",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak NL Gain [DarkEn] NL thestormbringer:Empower: Draw a card"
+  },
+  "theStormbringer:Crunch": {
+    "NAME": "Crunch",
+    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Empower: Deal !D! damage and apply !theStormbringer:M2! Vulnerable."
+  }
+}
+

@@ -10,7 +10,7 @@ import static theStormbringer.StormbringerMod.makeCardPath;
 import static theStormbringer.StormbringerMod.makeID;
 
 
-public class Defend extends AbstractDefaultCard{
+public class Defend extends AbstractStormbringerCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -58,10 +58,7 @@ public class Defend extends AbstractDefaultCard{
     //Upgraded stats.
     @Override
     public void upp() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPGRADE_PLUS_BLOCK);
-            initializeDescription();
-        }
+        upgradeBlock(UPGRADE_PLUS_BLOCK);
+        initializeDescription();
     }
 }
