@@ -7,12 +7,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Null;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.ExceptionHandler;
 import com.megacrit.cardcrawl.core.Settings;
@@ -24,12 +27,15 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.Sys;
 import theStormbringer.StormbringerMod;
+import theStormbringer.actions.GainTypedEnergyAction;
 import theStormbringer.util.CardArtRoller;
 import theStormbringer.util.TypeEnergyHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -54,8 +60,10 @@ public abstract class AbstractStormbringerCard extends CustomCard {
     protected int[] elementCost = new int[8];
     private float rotationTimer = 0;
     private int previewIndex;
+    public TypeEnergyHelper.Mana Type;
     public static boolean alwaysFreeToCast = false;
     public boolean freeManaOnce = false;
+    public boolean canEmpower = true;
     protected ArrayList<AbstractCard> cardToPreview = new ArrayList<>();
     private static float centerX = (float)Settings.WIDTH / 2.0F;
     private static float centerY = (float)Settings.HEIGHT / 2.0F;
@@ -79,7 +87,11 @@ public abstract class AbstractStormbringerCard extends CustomCard {
                 needsArtRefresh = true;
         }
     }
-
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        if (Type == null) {
+            addToBot(new GainTypedEnergyAction(Type, 1));
+        }
+    }
     @Override
     protected Texture getPortraitImage() {
         if (textureImg.contains("ui/missing.png")) {
@@ -113,6 +125,7 @@ public abstract class AbstractStormbringerCard extends CustomCard {
 
     @Override
     public void applyPowers() {
+
         if (baseSecondDamage > -1) {
             secondDamage = baseSecondDamage;
 

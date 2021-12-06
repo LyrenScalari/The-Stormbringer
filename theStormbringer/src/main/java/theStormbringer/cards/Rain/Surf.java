@@ -35,7 +35,8 @@ public class Surf extends AbstractStormbringerCard {
         setOrbTexture(Water_Energy, Water_Energy_Portrait);
         energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
         energyCosts.put(TypeEnergyHelper.Mana.Water, 1);
-        energyCosts.put(TypeEnergyHelper.Mana.Electric, 1);
+        energyCosts.put(TypeEnergyHelper.Mana.Colorless, 1);
+        Type = TypeEnergyHelper.Mana.Water;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -43,7 +44,9 @@ public class Surf extends AbstractStormbringerCard {
         addToBot(new VFXAction(new BorderFlashEffect(Color.BLUE.cpy())));
         addToBot(new VFXAction(new WhirlwindEffect(Color.CYAN.cpy(),false)));
         addToBot(new DamageAllEnemiesAction(p,multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot(new EmpowerAction(energyCosts,()-> new ApplyPowerAction(p,p,new SurfPower("Clear Water",magicNumber))));
+        if (!TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
+            addToBot(new EmpowerAction(energyCosts,()-> new ApplyPowerAction(p,p,new SurfPower("Clear Water",magicNumber))));
+        } else super.use(p,m);
     }
 
     public void upp() {

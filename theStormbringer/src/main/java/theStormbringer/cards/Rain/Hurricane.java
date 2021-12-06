@@ -3,6 +3,7 @@ package theStormbringer.cards.Rain;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -33,8 +34,10 @@ public class Hurricane extends AbstractStormbringerCard {
         isMultiDamage = true;
         setOrbTexture(Elec_Energy, Elec_Energy_Portrait);
         energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
-        energyCosts.put(TypeEnergyHelper.Mana.Water, 3);
-        energyCosts.put(TypeEnergyHelper.Mana.Electric, 3);
+        energyCosts.put(TypeEnergyHelper.Mana.Water, 2);
+        energyCosts.put(TypeEnergyHelper.Mana.Electric, 2);
+        energyCosts.put(TypeEnergyHelper.Mana.Colorless, 2);
+        Type = TypeEnergyHelper.Mana.Electric;
     }
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
@@ -60,14 +63,16 @@ public class Hurricane extends AbstractStormbringerCard {
         Wiz.vfx(new WhirlwindEffect(Color.SKY.cpy(),true));
         addToBot(new DamageAllEnemiesAction(p,multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new DamageAllEnemiesAction(p,multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot(new EmpowerAction(energyCosts,()-> new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        addToBot(new DamageAllEnemiesAction(p,multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                        addToBot(new DamageAllEnemiesAction(p,multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                        isDone = true;
-                    }
-                }));
+        if (!TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
+            addToBot(new EmpowerAction(energyCosts,()-> new AbstractGameAction() {
+                @Override
+                public void update() {
+                    addToBot(new DamageAllEnemiesAction(p,multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                    addToBot(new DamageAllEnemiesAction(p,multiDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                    isDone = true;
+                }
+            }));
+        } else super.use(p,m);
     }
 
     public void upp() {

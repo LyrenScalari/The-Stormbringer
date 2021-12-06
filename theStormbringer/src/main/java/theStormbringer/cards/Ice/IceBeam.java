@@ -8,6 +8,7 @@ import theStormbringer.actions.GainTypedEnergyAction;
 import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
 import theStormbringer.powers.IcePower;
+import theStormbringer.util.TypeEnergyHelper;
 import theStormbringer.util.WeatherEffects.Hailstorm;
 
 import static theStormbringer.StormbringerMod.*;
@@ -22,6 +23,7 @@ public class IceBeam extends AbstractStormbringerCard {
         baseMagicNumber = magicNumber = 1;
         baseSecondMagic = secondMagic = 2;
         setOrbTexture(Ice_Energy, Ice_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Ice;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -30,6 +32,7 @@ public class IceBeam extends AbstractStormbringerCard {
             currentWeather.weathertimer += magicNumber;
             addToBot(new ApplyPowerAction(p,p,new IcePower(p,p,secondMagic)));
         }
+        super.use(p,m);
     }
 
     public void upp() {

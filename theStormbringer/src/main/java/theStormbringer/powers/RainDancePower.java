@@ -11,13 +11,14 @@ import theStormbringer.StormbringerMod;
 import theStormbringer.actions.GainTypedEnergyAction;
 import theStormbringer.util.TypeEnergyHelper;
 
-public class WaterPulsePower extends AbstractClearWaterPower {
+public class RainDancePower extends AbstractClearWaterPower {
     public AbstractCreature source;
     public static final String POWER_ID = StormbringerMod.makeID("WaterPulse");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public WaterPulsePower(String NAME, int amount) {
+
+    public RainDancePower(String NAME, int amount) {
         super(NAME, amount);
         name = NAME;
         ID = POWER_ID;
@@ -32,10 +33,12 @@ public class WaterPulsePower extends AbstractClearWaterPower {
 
         updateDescription();
     }
+
     public void atStartOfTurn() {
-        addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         super.atStartOfTurn();
     }
+
     public void updateDescription() {
         this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }

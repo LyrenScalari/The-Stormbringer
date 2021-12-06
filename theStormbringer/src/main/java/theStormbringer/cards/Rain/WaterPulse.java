@@ -25,7 +25,8 @@ public class WaterPulse extends AbstractStormbringerCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        Wiz.applyToSelf(new WaterPulsePower("Water Pulse",damage,1));
+        Wiz.applyToSelf(new WaterPulsePower("Water Pulse",damage));
+        super.use(p,m);
     }
 
     public void upp() {

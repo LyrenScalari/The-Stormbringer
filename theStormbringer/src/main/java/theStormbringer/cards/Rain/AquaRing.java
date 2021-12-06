@@ -1,6 +1,7 @@
 package theStormbringer.cards.Rain;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
@@ -28,19 +29,17 @@ public class AquaRing extends AbstractStormbringerCard {
         setOrbTexture(Water_Energy, Water_Energy_Portrait);
         energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
         energyCosts.put(TypeEnergyHelper.Mana.Water, 2);
+        Type = TypeEnergyHelper.Mana.Water;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Water,1));
-        if (TypeEnergyHelper.getManaByEnum(TypeEnergyHelper.Mana.Water) >= 2){
+        if (!TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
             addToBot(new EmpowerAction(energyCosts,()-> new AbstractGameAction() {
                 @Override
-                public void update() {
-                    Wiz.applyToSelf(new AquaRingPower("Clear Water", block));
-                }
+                public void update() { Wiz.applyToSelf(new AquaRingPower("Clear Water", block)); }
             }));
-        }
+        } else super.use(p,m);
     }
 
     public void upp() {

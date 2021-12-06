@@ -21,6 +21,7 @@ public class MegaBurst  extends AbstractStormbringerCard {
         baseDamage = 10;
         baseMagicNumber = magicNumber = 1;
         setOrbTexture(Fairy_Energy, Fairy_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Fairy;
         exhaust = true;
     }
 
@@ -30,8 +31,8 @@ public class MegaBurst  extends AbstractStormbringerCard {
         addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Ice,1));
         addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Dark,1));
         addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Psychic,1));
-        addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Fairy,1));
         addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Electric,1));
+        super.use(p,m);
     }
 
     public void upp() {

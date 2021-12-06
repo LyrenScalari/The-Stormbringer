@@ -34,21 +34,23 @@ public class Crunch extends AbstractStormbringerCard {
         initializeDescription();
         energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
         energyCosts.put(TypeEnergyHelper.Mana.Dark, magicNumber);
+        Type = TypeEnergyHelper.Mana.Dark;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.effectsQueue.add(new BiteEffect(m.drawX,m.drawY, Color.DARK_GRAY));
         dmg(m, AbstractGameAction.AttackEffect.NONE);
-        addToBot(new EmpowerAction(energyCosts,()-> new AbstractGameAction() {
-            @Override
-            public void update() {
-                dmg(m, AbstractGameAction.AttackEffect.NONE);
-                addToBot(new ApplyPowerAction(m,p,new VulnerablePower(m,secondMagic,false)));
-                AbstractDungeon.effectsQueue.add(new BiteEffect(m.drawX,m.drawY, Color.LIGHT_GRAY));
-                isDone = true;
-            }
-        }));
-
+        if (!TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
+            addToBot(new EmpowerAction(energyCosts,()-> new AbstractGameAction() {
+                @Override
+                public void update() {
+                    dmg(m, AbstractGameAction.AttackEffect.NONE);
+                    addToBot(new ApplyPowerAction(m,p,new VulnerablePower(m,secondMagic,false)));
+                    AbstractDungeon.effectsQueue.add(new BiteEffect(m.drawX,m.drawY, Color.LIGHT_GRAY));
+                    isDone = true;
+                }
+            }));
+        } else super.use(p,m);
     }
 
     public void upp() {

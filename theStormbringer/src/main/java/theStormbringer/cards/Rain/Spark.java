@@ -20,15 +20,15 @@ public class Spark extends AbstractStormbringerCard {
         baseMagicNumber = magicNumber = 1;
         baseSecondMagic = secondMagic = 1;
         setOrbTexture(Elec_Energy,Elec_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Electric;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         Wiz.applyToEnemy(m,new WeakPower(m,magicNumber,false));
-        addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Electric,secondMagic));
+        super.use(p,m);
     }
 
     public void upp() {
-        upgradeSecondMagic(1);
         upgradeBaseCost(0);
     }
 }

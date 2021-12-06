@@ -1,7 +1,10 @@
 package theStormbringer.cards.Rain;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,11 +12,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import theStormbringer.actions.EmpowerAction;
 import theStormbringer.actions.GainTypedEnergyAction;
 import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
 import theStormbringer.util.TypeEnergyHelper;
 import theStormbringer.util.WeatherEffects.HeavyRain;
+
+import java.util.EnumMap;
 
 import static theStormbringer.StormbringerMod.*;
 
@@ -58,19 +64,29 @@ public class Thunderbolt extends AbstractStormbringerCard {
     public Thunderbolt() {
         super(ID,COST,TYPE,RARITY,TARGET,COLOR);
         baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = 1;
+        magicNumber = baseMagicNumber = 2;
         setOrbTexture(Elec_Energy,Elec_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Electric;
+        energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
+        energyCosts.put(TypeEnergyHelper.Mana.Colorless,2);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        super.use(p,m);
         addToBot(new VFXAction(new LightningEffect(m.drawX,m.drawY)));
         addToBot(new DamageAction(m,new DamageInfo(p,damage)));
-        if (currentWeather instanceof HeavyRain){
-            addToBot(new GainEnergyAction(magicNumber));
-            addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Electric,magicNumber));
-        }
+        if (!TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
+            addToBot(new EmpowerAction(energyCosts,()-> new AbstractGameAction() {
+                @Override
+                public void update() {
+                    addToBot(new GainEnergyAction(magicNumber));
+                    addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Electric,magicNumber));
+                    isDone = true;
+                }
+            }));
+        } else super.use(p,m);
     }
 
     // Upgraded stats.

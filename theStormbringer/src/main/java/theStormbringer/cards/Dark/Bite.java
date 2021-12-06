@@ -49,6 +49,7 @@ public class Bite extends AbstractStormbringerCard {
         setOrbTexture(Dark_Energy,Dark_Energy_Portrait);
         energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
         energyCosts.put(TypeEnergyHelper.Mana.Colorless, 2);
+        Type = TypeEnergyHelper.Mana.Dark;
     }
 
     @Override
@@ -56,8 +57,9 @@ public class Bite extends AbstractStormbringerCard {
         addToBot(new VFXAction(new BiteEffect(m.drawX,m.drawY)));
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         addToBot(new ApplyPowerAction(m,p,new WeakPower(m,magicNumber,false)));
-        addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Dark,1));
-        addToBot(new EmpowerAction(energyCosts,()-> new DrawCardAction(1)));
+        if (!TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
+            addToBot(new EmpowerAction(energyCosts,()-> new DrawCardAction(1)));
+        } else super.use(p,m);
     }
 
     // Upgraded stats.

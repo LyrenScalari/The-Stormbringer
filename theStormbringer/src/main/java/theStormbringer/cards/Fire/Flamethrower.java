@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
 import theStormbringer.powers.BurnPower;
+import theStormbringer.util.TypeEnergyHelper;
 
 import static theStormbringer.StormbringerMod.*;
 
@@ -38,6 +39,7 @@ public class Flamethrower extends AbstractStormbringerCard {
         magicNumber = baseMagicNumber = 3;
         isMultiDamage = true;
         setOrbTexture(Fire_Energy,Fire_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Fire;
     }
 
     // Actions the card should do.
@@ -47,6 +49,7 @@ public class Flamethrower extends AbstractStormbringerCard {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters){
             addToBot(new ApplyPowerAction(mo,p,new BurnPower(mo,p,magicNumber)));
         }
+        super.use(p,m);
     }
 
     // Upgraded stats.

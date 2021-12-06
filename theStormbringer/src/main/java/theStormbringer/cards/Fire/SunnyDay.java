@@ -46,7 +46,7 @@ public class SunnyDay extends AbstractStormbringerCard {
 
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStormbringer.Enums.COLOR_NAVY;
@@ -61,15 +61,14 @@ public class SunnyDay extends AbstractStormbringerCard {
         magicNumber = baseMagicNumber = 3;
         isMultiDamage = true;
         setOrbTexture(Fire_Energy,Fire_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Fire;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeWeatherAction(new HarshSunlight()));
-        if (currentWeather instanceof HarshSunlight) {
-            addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Fire,magicNumber));
-        }
+        super.use(p,m);
     }
 
     // Upgraded stats.

@@ -31,7 +31,7 @@ public class TypeEnergyHelper {
             }
         }
         int colorlessCost = empowerCosts.getOrDefault(Mana.Colorless, 0);
-        if(colorlessCost != 0){
+        if(colorlessCost > 0){
             if(temp.isEmpty()){
                 res.put(Mana.Colorless, false);
             } else {
@@ -43,13 +43,13 @@ public class TypeEnergyHelper {
                         res.put(Mana.Colorless, true);
                     } else {
                         res.put(Mana.Colorless, false);
+                        break;
                     }
                 }
             }
         }
         return res;
     }
-
     public static boolean handleElementalCosts(EnumMap<Mana, Integer> empowerCosts){
         Map<Mana, Integer> temp = currentMana.entrySet().stream()
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
@@ -63,7 +63,7 @@ public class TypeEnergyHelper {
             }
         }
         int colorlessCost = empowerCosts.getOrDefault(Mana.Colorless, 0);
-        if(colorlessCost != 0){
+        if(colorlessCost > 0){
             if(temp.isEmpty()){
                 return false;
             } else {

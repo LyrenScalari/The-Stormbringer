@@ -31,7 +31,7 @@
       "Empower",
       "empower"
     ],
-    "DESCRIPTION": "If you have at least X of the shown #yMana, spend it and get a bonus effect."
+    "DESCRIPTION": "Pay this cards #yEmpower cost for a bonus effect. NL If a card cannot be #yEmpowered, gain 1 #yMana of it's type instead."
   },
   {
     "NAMES": [
@@ -45,14 +45,14 @@
       "Harsh\u00a0Sunlight",
       "harsh\u00a0sunlight"
     ],
-    "DESCRIPTION": "#yWeather: Damage dealt by cards increased, #ySunny effects activate."
+    "DESCRIPTION": "#yWeather: Damage dealt by cards increased"
   },
   {
     "NAMES": [
       "Heavy\u00a0Rain",
       "heavy\u00a0rain"
     ],
-    "DESCRIPTION": "#yWeather: Block gain from cards increased, #yCurrent effects activate."
+    "DESCRIPTION": "#yWeather: Block gain from cards increased."
   },
   {
     "NAMES": [
@@ -68,13 +68,13 @@
       "Hail",
       "hail"
     ],
-    "DESCRIPTION": "#yWeather: #yCrystalize effects activate. NL At the end of your turn random enemies take damage."
+    "DESCRIPTION": "#yWeather: At the end of your turn random enemies take damage."
   },
   {
     "NAMES": [
       "Sandstorm",
       "sandstorm"
     ],
-    "DESCRIPTION": "#yWeather: #yAbrasive effects activate. NL At the end of your turn gain block."
+    "DESCRIPTION": "#yWeather: At the end of your turn gain block."
   }
 ]

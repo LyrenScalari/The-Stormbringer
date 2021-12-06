@@ -50,6 +50,7 @@ public class Forwarn extends AbstractStormbringerCard {
         magicNumber = baseMagicNumber = 2;
         secondMagic = baseSecondMagic = 1;
         setOrbTexture(Psy_Energy,Psy_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Psychic;
     }
 
     // Actions the card should do.
@@ -57,7 +58,7 @@ public class Forwarn extends AbstractStormbringerCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ScryAction(magicNumber));
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
-        addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Psychic,secondMagic));
+        super.use(p,m);
     }
 
     //Upgraded stats.

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
 import theStormbringer.powers.ResistancePower;
+import theStormbringer.util.TypeEnergyHelper;
 import theStormbringer.util.WeatherEffects.Hailstorm;
 import theStormbringer.util.Wiz;
 
@@ -20,6 +21,7 @@ public class AuroraVeil extends AbstractStormbringerCard {
         baseBlock = 7;
         baseMagicNumber = magicNumber = 3;
         setOrbTexture(Ice_Energy, Ice_Energy_Portrait);
+        Type = TypeEnergyHelper.Mana.Ice;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -27,6 +29,7 @@ public class AuroraVeil extends AbstractStormbringerCard {
         if (currentWeather instanceof Hailstorm){
             Wiz.applyToSelf(new ResistancePower(p,p,magicNumber));
         }
+        super.use(p,m);
     }
 
     public void upp() {

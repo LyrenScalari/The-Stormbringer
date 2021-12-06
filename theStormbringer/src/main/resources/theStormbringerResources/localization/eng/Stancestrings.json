@@ -14,7 +14,7 @@
   "theStormbringer:HeavyRain": {
     "NAME": "Heavy Rain",
     "DESCRIPTION": [
-      "#bWater attacks deal 25% more damage. NL #rFire attacks deal 25% less damage."
+      "#yBlock gain increased by #b"
     ]
   },
   "theStormbringer:Hailstorm": {

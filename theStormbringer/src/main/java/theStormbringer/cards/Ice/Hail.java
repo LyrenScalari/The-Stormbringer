@@ -1,17 +1,25 @@
 package theStormbringer.cards.Ice;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theStormbringer.actions.ChangeWeatherAction;
+import theStormbringer.actions.EmpowerAction;
 import theStormbringer.actions.GainTypedEnergyAction;
 import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.cards.Fire.SunnyDay;
 import theStormbringer.characters.TheStormbringer;
+import theStormbringer.powers.SurfPower;
 import theStormbringer.util.TypeEnergyHelper;
 import theStormbringer.util.WeatherEffects.Hailstorm;
 import theStormbringer.util.WeatherEffects.HarshSunlight;
+
+import java.util.EnumMap;
 
 import static theStormbringer.StormbringerMod.*;
 
@@ -44,7 +52,7 @@ public class Hail extends AbstractStormbringerCard {
 
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStormbringer.Enums.COLOR_NAVY;
@@ -55,20 +63,30 @@ public class Hail extends AbstractStormbringerCard {
 
     public Hail () {
         super(ID,COST,TYPE,RARITY,TARGET,COLOR);
-        baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = 2;
+        block = baseBlock = 8;
         isMultiDamage = true;
         setOrbTexture(Ice_Energy,Ice_Energy_Portrait);
+        energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
+        energyCosts.put(TypeEnergyHelper.Mana.Ice, 1);
+        Type = TypeEnergyHelper.Mana.Ice;
+        energyCosts.put(TypeEnergyHelper.Mana.Colorless, 1);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeWeatherAction(new Hailstorm()));
-        if (currentWeather instanceof Hailstorm) {
-            addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Ice,magicNumber));
-            currentWeather.weathertimer += magicNumber;
-        }
+        if (!TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
+            addToBot(new EmpowerAction(energyCosts,()-> new AbstractGameAction() {
+                @Override
+                public void update() {
+                    currentWeather.weathertimer += magicNumber;
+                    addToBot( new GainBlockAction(p,block));
+                    isDone = true;
+                }
+            }));
+        } else super.use(p,m);
     }
 
     // Upgraded stats.

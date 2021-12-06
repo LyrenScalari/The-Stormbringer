@@ -24,6 +24,7 @@ public class IcicleCrash extends AbstractStormbringerCard {
         setOrbTexture(Ice_Energy, Ice_Energy_Portrait);
         damage = baseDamage = 8;
         magicNumber = baseMagicNumber = 1;
+        Type = TypeEnergyHelper.Mana.Ice;
     }
     public void applyPowers() {
         AbstractPower icePower = AbstractDungeon.player.getPower(IcePower.POWER_ID);
@@ -35,11 +36,7 @@ public class IcicleCrash extends AbstractStormbringerCard {
     }
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAllEnemiesAction(p,baseDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HEAVY));
-        AbstractPower icePower = AbstractDungeon.player.getPower(IcePower.POWER_ID);
-        if (icePower != null) {
-            addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Ice,magicNumber+icePower.amount));
-        } else addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Ice,magicNumber));
-
+        super.use(p,m);
     }
 
     public void upp() {

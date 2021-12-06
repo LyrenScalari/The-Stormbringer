@@ -30,7 +30,7 @@ public class HeavyRain extends AbstractWeather implements ModifyBlockStance {
     }
     @Override
     public String updateDescription() {
-        return description;
+        return description + powerbonus;
     }
     public void onSummonWeather() {
         weathertimer = 4;

@@ -14,6 +14,7 @@ import theStormbringer.characters.TheStormbringer;
 import theStormbringer.util.TypeEnergyHelper;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 import static theStormbringer.StormbringerMod.*;
 
@@ -26,17 +27,19 @@ public class IceShard extends AbstractStormbringerCard {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, TheStormbringer.Enums.COLOR_NAVY);
         baseDamage = 4;
         baseSecondDamage = 8;
-        baseMagicNumber = magicNumber = 3;
         setOrbTexture(Ice_Energy,Ice_Energy_Portrait);
         energyCosts = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
-        energyCosts.put(TypeEnergyHelper.Mana.Ice, magicNumber);
+        energyCosts.put(TypeEnergyHelper.Mana.Ice, 1);
+        energyCosts.put(TypeEnergyHelper.Mana.Colorless, 1);
+        Type = TypeEnergyHelper.Mana.Ice;
         initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (TypeEnergyHelper.getManaByEnum(TypeEnergyHelper.Mana.Ice) < magicNumber) {
+        if (TypeEnergyHelper.hasEnoughMana(energyCosts).containsValue(false)) {
             addToBot(new DamageAction(m, new DamageInfo(p, damage)));
             addToBot(new GainTypedEnergyAction(TypeEnergyHelper.Mana.Ice,1));
+            super.use(p,m);
         } else {
             addToBot(new EmpowerAction(energyCosts,()->new DamageAction(m, new DamageInfo(p, secondDamage))));
         }
