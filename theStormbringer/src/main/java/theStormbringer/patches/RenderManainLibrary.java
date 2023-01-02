@@ -3,6 +3,7 @@ package theStormbringer.patches;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import theStormbringer.cards.AbstractForetellCard;
 import theStormbringer.cards.AbstractStormbringerCard;
 @SpirePatch(
         clz = AbstractCard.class,
@@ -13,6 +14,9 @@ public class RenderManainLibrary {
     public static void Postfix(AbstractCard __instance, SpriteBatch sb) {
         if (__instance instanceof AbstractStormbringerCard) {
             AbstractStormbringerCard.renderManaCost((AbstractStormbringerCard) __instance, sb);
+        }
+        if (__instance instanceof AbstractForetellCard) {
+            AbstractStormbringerCard.renderManaCost((AbstractForetellCard) __instance, sb);
         }
     }
 }

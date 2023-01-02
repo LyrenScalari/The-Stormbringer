@@ -1,80 +1,51 @@
 [
   {
+    "PROPER_NAME": "[theStormbringer:StyleIcon] Style",
     "NAMES": [
-      "keyword",
-      "keywords"
+      "Style",
+      "style"
     ],
-    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+    "DESCRIPTION": "Pay shown #yMana cost on this card for a bonus effect. NL If a cards #yStyle cost cannot be payed gain 1 #yMana of it's type instead."
   },
   {
-    "PROPER_NAME": "Multiword Keyword",
+    "PROPER_NAME": "[theStormbringer:ForetellIcon] Foretell",
     "NAMES": [
-      "Multiword Keyword",
-      "multiword_keyword",
-      "multiword_keywords",
-      "multikey",
-      "multikeyword"
+      "Foretell",
+      "foretell",
+      "Foretold",
+      "foretold"
     ],
-    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+    "DESCRIPTION": "Right click this card in your hand to pay the cost on this card and #ySuspend it for #b1 turn and is #yForetold until played. NL #yForetold cards do not grant #yMana when played."
   },
   {
+    "PROPER_NAME": "Suspend",
     "NAMES": [
-      "Burn",
-      "burn",
-      "burned",
-      "Burned"
+      "Suspend",
+      "suspend"
     ],
-    "DESCRIPTION": "Burned creatures take #b10% of their Maximum HP as damage at the end of their turn. Burn is reduced by #b1 each turn."
-  },
-  {
-    "NAMES": [
-      "Empower",
-      "empower"
-    ],
-    "DESCRIPTION": "Pay this cards #yEmpower cost for a bonus effect. NL If a card cannot be #yEmpowered, gain 1 #yMana of it's type instead."
+    "DESCRIPTION": "#ySuspending a card #yexhausts it, when #ySuspend expires return it to your hand, it costs 0 and has #yRetain until played."
   },
   {
     "NAMES": [
-      "Prismatic\u00a0Barrier",
-      "prismatic\u00a0barrier"
+      "Destiny Knot",
+      "Destiny_Knot",
+      "destiny knot",
+      "destiny_knot"
     ],
-    "DESCRIPTION": "Take less damage from all sources. #yPrismatic #yBarrier is lost when #yHail subsides"
+    "DESCRIPTION": "creature with #yDestiny #yKnot take additional damage equal to half the damage taken by creature with #yDestiny #yKnot"
   },
   {
     "NAMES": [
-      "Harsh\u00a0Sunlight",
-      "harsh\u00a0sunlight"
+      "Mana",
+      "mana"
     ],
-    "DESCRIPTION": "#yWeather: Damage dealt by cards increased"
+    "DESCRIPTION": "#yMana is produced by Ruinteller cards except for basic Strikes and Defends and is spent by #yStyle effects and to #yFortell cards."
   },
   {
     "NAMES": [
-      "Heavy\u00a0Rain",
-      "heavy\u00a0rain"
+      "Thread",
+      "thread"
     ],
-    "DESCRIPTION": "#yWeather: Block gain from cards increased."
-  },
-  {
-    "NAMES": [
-      "Ripple",
-      "ripple"
-    ],
-    "DESCRIPTION": "Play the top X cards that cost less than this in your draw pile and #yExhaust them."
-  },
-  {
-    "NAMES": [
-      "Hailstorm",
-      "hailstorm",
-      "Hail",
-      "hail"
-    ],
-    "DESCRIPTION": "#yWeather: At the end of your turn random enemies take damage."
-  },
-  {
-    "NAMES": [
-      "Sandstorm",
-      "sandstorm"
-    ],
-    "DESCRIPTION": "#yWeather: At the end of your turn gain block."
+    "DESCRIPTION": "#yThread effects occur whenever this card enters the draw or discard pile"
   }
 ]

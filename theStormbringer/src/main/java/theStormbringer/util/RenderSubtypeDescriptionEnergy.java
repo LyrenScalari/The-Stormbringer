@@ -160,7 +160,7 @@ public class RenderSubtypeDescriptionEnergy {
         public static void Insert(AbstractCard __instance,  @ByRef GlyphLayout[] gl, String word)
         {
             if (word.length() > 0 && word.charAt(0) == '[') {
-                if (word.equals("[FireEn]") || word.equals("[WaterEn]") || word.equals("[IceEn]") || word.equals("[ElectricEn]") || word.equals("[RockEn]") || word.equals("[PsyEn]") || word.equals("[DarkEn]")) {
+                if (word.equals("[FireEn]") || word.equals("[WaterEn]") || word.equals("[IceEn]") || word.equals("[ElectricEn]") || word.equals("[TypelessEn]") || word.equals("[PsyEn]") || word.equals("[DarkEn]")) {
                     System.out.println("successfully shortened");
                     gl[0].setText(FontHelper.cardDescFont_N, " ");
                     gl[0].width = CARD_ENERGY_IMG_WIDTH;

@@ -38,7 +38,7 @@ public class SandstormEffect extends AbstractGameEffect {
             this.rotation += 180.0F;
         }
 
-        this.color = new Color(CardHelper.getColor(120,MathUtils.random(55,70),MathUtils.random(12,20))).cpy();
+        this.color = new Color(120f,(float)MathUtils.random(55,70),(float)MathUtils.random(12,20),1f).cpy();
         this.duration = 4.0F;
     }
 

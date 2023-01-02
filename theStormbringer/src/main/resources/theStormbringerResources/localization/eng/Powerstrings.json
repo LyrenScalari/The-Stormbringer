@@ -8,20 +8,20 @@
         "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
 },
         "theStormbringer:Burn": {
-                "NAME": "Burn",
-                "DESCRIPTIONS": ["At the end of your turn, take damage equal to #b10% of your Maximum HP."]
+                "NAME": "Heat",
+                "DESCRIPTIONS": ["Increases damage taken #b","%"]
+        },
+        "theStormbringer:Drought": {
+                "NAME": "Ignition",
+                "DESCRIPTIONS": ["At the start of this creatures turn it takes #b"," damage"]
+        },
+        "theStormbringer:SolarPower": {
+                "NAME": "SolarPower",
+                "DESCRIPTIONS": ["During #yHarsh #ySunlight at the start of turn, gain #b"," #yVigor."]
         },
         "theStormbringer:Smoulder": {
                 "NAME": "Smoulder",
                 "DESCRIPTIONS": ["At the start of your turn, activate your #yBurn twice."]
-        },
-        "theStormbringer:Resistance": {
-                "NAME": "Prismatic Barrier",
-                "DESCRIPTIONS": ["Take #b"," Less damage. remove this when the weather is no longer #yHail"]
-        },
-        "theStormbringer:Clarity": {
-                "NAME": "Clarity",
-                "DESCRIPTIONS": ["Increase #yClear #yWater buffs gained by #b"]
         },
         "theStormbringer:WaterPulse": {
                 "NAME": "Clear Water",
@@ -31,20 +31,28 @@
                 "NAME": "Clear Water",
                 "DESCRIPTIONS": ["Next Turn, gain #b", " #yBlock"]
         },
-        "theStormbringer:SnowWarning": {
-                "NAME": "Snow Warning",
-                "DESCRIPTIONS": ["#yHail lasts #b", " extra turns"]
+        "theStormbringer:Hydration": {
+                "NAME": "Hydration",
+                "DESCRIPTIONS": ["The next time you gain #yBlock, gain #b", " more"]
         },
-        "theStormbringer:PowderSnow": {
-                "NAME": "Powder Snow",
-                "DESCRIPTIONS": ["#yHail hits #b", " extra times"]
+        "theStormbringer:Frostbite": {
+                "NAME": "Frostbite",
+                "DESCRIPTIONS": ["At the end of this creatures turn it takes #b", " damage NL when this obtains #b"," #yFrostbite it becomes #yFrozen"]
         },
-        "theStormbringer:IcePower": {
-                "NAME": "Ice Power",
-                "DESCRIPTIONS": ["#yHail deals #b", " extra damage"]
+        "theStormbringer:Freeze": {
+                "NAME": "Frozen",
+                "DESCRIPTIONS": ["Takes and deals #b50% less damage."]
+        },
+        "theStormbringer:Resistance": {
+                "NAME": "Prismatic Barrier",
+                "DESCRIPTIONS": ["Take #b"," Less damage. remove this when the weather is no longer #yHail"]
         },
         "theStormbringer:Surf": {
                 "NAME": "Clear Water",
                 "DESCRIPTIONS": ["Next Turn, draw #b", " cards"]
+        },
+        "theStormbringer:Foretell": {
+                "NAME": "Foretell",
+                "DESCRIPTIONS": ["Next Turn, add a #yForetold ", " to your hand."]
         }
 }

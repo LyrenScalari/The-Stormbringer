@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import theStormbringer.StormbringerMod;
 import theStormbringer.characters.TheStormbringer;
+import theStormbringer.util.AbstractManaOrb;
+import theStormbringer.util.AbstractNotOrb;
 import theStormbringer.util.TypeEnergyHelper;
 import theStormbringer.util.WeatherEffects.AbstractWeather;
 

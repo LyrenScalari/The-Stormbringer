@@ -2,7 +2,7 @@ package theStormbringer.characters;
 
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
-import basemod.animations.SpriterAnimation;
+import basemod.animations.SpineAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -20,19 +20,14 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import theStormbringer.StormbringerMod;
 import theStormbringer.cards.*;
-import theStormbringer.cards.Dark.Bite;
-import theStormbringer.cards.Fire.Flamethrower;
-import theStormbringer.cards.Psychic.Forwarn;
 import theStormbringer.relics.CrackedIris;
+import theStormbringer.relics.KineticGenerator;
 
 import java.util.ArrayList;
 
 import static theStormbringer.StormbringerMod.*;
-import static theStormbringer.characters.TheStormbringer.Enums.COLOR_NAVY;
+import static theStormbringer.characters.TheStormbringer.Enums.COLOR_SILVER;
 
 //Wiki-page https://github.com/daviscook477/BaseMod/wiki/Custom-Characters
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
@@ -58,14 +53,18 @@ public class TheStormbringer extends CustomPlayer {
     public static float[] layerSpeeds = new float[]{-20.0F, 20.0F, -40.0F, 40.0F, 0.0F};
 
     public TheStormbringer(String name, PlayerClass setClass) {
-        super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/mainChar/defaultCharacter/orb/vfx.png", layerSpeeds), new SpriterAnimation(
-                modID + "Resources/images/mainChar/Stormbringer/Stormbringer.scml"));
+        super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/mainChar/defaultCharacter/orb/vfx.png", layerSpeeds), new SpineAnimation("theStormbringerResources/images//mainChar/Stormbringer/TheStormbringer.atlas","theStormbringerResources/images//mainChar/Stormbringer/TheStormbringer.json",1.0f));
         initializeClass(null,
                 SHOULDER1,
                 SHOULDER2,
                 CORPSE,
                 getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new EnergyManager(3));
-
+        loadAnimation(
+                THE_DEFAULT_SKELETON_ATLAS,
+                THE_DEFAULT_SKELETON_JSON,
+                1.0f);
+        AnimationState.TrackEntry e = state.setAnimation(0, "animtion0", true);
+        e.setTime(e.getEndTime() * MathUtils.random());
 
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 240.0F * Settings.scale);
@@ -87,16 +86,15 @@ public class TheStormbringer extends CustomPlayer {
         for (int i = 0; i < 4; i++) {
             retVal.add(Defend.ID);
         }
-
         retVal.add(Bite.ID);
-        retVal.add(Forwarn.ID);
-
+        retVal.add(Sawitcoming.ID);
         return retVal;
     }
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(CrackedIris.ID);
+        retVal.add(KineticGenerator.ID);
         return retVal;
     }
 
@@ -119,12 +117,12 @@ public class TheStormbringer extends CustomPlayer {
 
     @Override
     public AbstractCard.CardColor getCardColor() {
-        return COLOR_NAVY;
+        return COLOR_SILVER;
     }
 
     @Override
     public Color getCardTrailColor() {
-        return STORMBRINGER_NAVY.cpy();
+        return STORMBRINGER_SILVER.cpy();
     }
 
     @Override
@@ -143,10 +141,10 @@ public class TheStormbringer extends CustomPlayer {
     }
 
     public AbstractCard chooseEventStarterCard(){
-        switch (AbstractDungeon.miscRng.random(0,1)){
+        switch (AbstractDungeon.miscRng.random(0,2)){
             case 0 :{
-                System.out.println("Event Starter Card : Forwarn");
-                return new Forwarn();
+                System.out.println("Event Starter Card : Razor Wind");
+                return new RazorWind();
             }
             case 1 : {
                 System.out.println("Event Starter Card : Bite");
@@ -169,12 +167,12 @@ public class TheStormbringer extends CustomPlayer {
 
     @Override
     public Color getCardRenderColor() {
-        return STORMBRINGER_NAVY.cpy();
+        return STORMBRINGER_SILVER.cpy();
     }
 
     @Override
     public Color getSlashAttackColor() {
-        return STORMBRINGER_NAVY.cpy();
+        return STORMBRINGER_SILVER.cpy();
     }
 
     @Override
@@ -199,9 +197,9 @@ public class TheStormbringer extends CustomPlayer {
         //TODO: Change these.
         @SpireEnum
         public static AbstractPlayer.PlayerClass THE_STORMBRINGER;
-        @SpireEnum(name = "COLOR_NAVY")
-        public static AbstractCard.CardColor COLOR_NAVY;
-        @SpireEnum(name = "COLOR_NAVY")
+        @SpireEnum(name = "COLOR_SILVER")
+        public static AbstractCard.CardColor COLOR_SILVER;
+        @SpireEnum(name = "COLOR_SILVER")
         @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }

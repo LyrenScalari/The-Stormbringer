@@ -32,7 +32,7 @@ public class Defend extends AbstractStormbringerCard {
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = TheStormbringer.Enums.COLOR_NAVY;
+    public static final CardColor COLOR = TheStormbringer.Enums.COLOR_SILVER;
 
     private static final int COST = 1;
     private static final int BLOCK = 5;
@@ -45,7 +45,6 @@ public class Defend extends AbstractStormbringerCard {
     public Defend() {
         super(ID,COST,TYPE,RARITY,TARGET,COLOR);
         baseBlock = BLOCK;
-
         this.tags.add(CardTags.STARTER_DEFEND); //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.
     }
 

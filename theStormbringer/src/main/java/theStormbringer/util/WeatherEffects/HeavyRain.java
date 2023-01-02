@@ -25,7 +25,7 @@ public class HeavyRain extends AbstractWeather implements ModifyBlockStance {
     float secondParticleTimer = 0;
     int powerbonus = 3;
     public HeavyRain(){
-        name = stanceString.NAME;
+        name =  stanceString.NAME;
         description = stanceString.DESCRIPTION[0];
     }
     @Override
@@ -53,11 +53,10 @@ public class HeavyRain extends AbstractWeather implements ModifyBlockStance {
                     secondParticleTimer = MathUtils.random(1.5f,4.5f);
                     lightningCycle = true;
                 }
-                AbstractDungeon.effectsQueue.add(new HeavyRainEffect(8));
-                AbstractDungeon.effectsQueue.add(new HeavyRainEffect(8));
-                AbstractDungeon.effectsQueue.add(new HeavyRainEffect(8));
-                AbstractDungeon.effectsQueue.add(new HeavyRainEffect(8));
-                AbstractDungeon.effectsQueue.add(new HeavyRainEffect(8));
+                for (int i = 0; i < 100; i++) {
+                    AbstractDungeon.effectsQueue.add(new HeavyRainEffect(8));
+
+                }
             }
             updateDescription();
         }

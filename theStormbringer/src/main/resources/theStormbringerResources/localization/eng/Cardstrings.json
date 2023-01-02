@@ -7,106 +7,49 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block"
   },
-
-  "theStormbringer:Forwarn": {
-    "NAME": "Mind Reader",
-    "DESCRIPTION": "Scry !M! NL Gain !B! Block"
-  },
-  "theStormbringer:Psywave": {
-    "NAME": "Psywave",
-    "DESCRIPTION": "Deal !D! - !theStormbringer:D2! damage NL thestormbringer:Empower: Deal NL !theStormbringer:D2! damage instead."
-  },
-
-  "theStormbringer:Flamethrower": {
-    "NAME": "Flamethrower",
-    "DESCRIPTION": "Deal !D! damage and apply !M! thestormbringer:Burn to ALL enemies"
-  },
-  "theStormbringer:MysticalFire": {
-    "NAME": "Mystical Fire",
-    "DESCRIPTION": "Deal !D! damage. NL target takes thestormbringer:Burn damage at the start of it's turn for !M! Turns."
-  },
-  "theStormbringer:SunnyDay": {
-    "NAME": "Sunny Day",
-    "DESCRIPTION": "Summon thestormbringer:Harsh\u00a0Sunlight"
-  },
-
-  "theStormbringer:RainDance": {
-    "NAME": "Rain Dance",
-    "DESCRIPTION": "Summon thestormbringer:Heavy\u00a0Rain NL thestormbringer:Empower: Next Turn, Deal !D! damage to a random enemy."
-  },
-  "theStormbringer:AquaRing": {
-    "NAME": "Aqua Ring",
-    "DESCRIPTION": "Gain !B! Block. NL thestormbringer:Empower: Next Turn, Gain !B! Block."
-  },
-  "theStormbringer:Thunderbolt": {
-    "NAME": "Thunderbolt",
-    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Empower: Gain [ElectricEn] [ElectricEn] [E] [E]"
-  },
-  "theStormbringer:Spark": {
-    "NAME": "Spark",
-    "DESCRIPTION": "Apply !M! Weak."
-  },
-  "theStormbringer:WaterPulse": {
-    "NAME": "Water Pulse",
-    "DESCRIPTION": "Deal !D! damage. NL Next Turn, Deal !D! damage to a random enemy"
-  },
-  "theStormbringer:Surf": {
-    "NAME": "Surf",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL thestormbringer:Empower: Next Turn, Draw !M! cards."
-  },
-  "theStormbringer:Hurricane": {
-    "NAME":"Hurricane",
-    "DESCRIPTION": "can only be played during thestormbringer:Heavy Rain. NL Deal !D! damage to ALL enemies twice. NL thestormbringer:Empower: Hits 2 additional times.",
-    "EXTENDED_DESCRIPTION": ["The Conditions are wrong for this... NL (#rRequires #rHeavy #rRain)"]
-  },
-
-  "theStormbringer:Hail": {
-    "NAME": "Hail",
-    "DESCRIPTION": "Summon thestormbringer:Hail NL thestormbringer:Empower: thestormbringer:Hail remains !M! additional turns. NL Gain !B! Block."
-  },
-  "theStormbringer:AuroraBeam": {
-    "NAME": "Aurora Beam",
-    "DESCRIPTION": "Deal !D! damage. NL If the *Weather is thestormbringer:Hail Gain !M! thestormbringer:Prismatic Barrier."
-  },
-  "theStormbringer:IceBall": {
-    "NAME": "Ice Ball",
-    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Empower: Double this cards damage this combat."
-  },
-  "theStormbringer:IceShard": {
-    "NAME": "Ice Shard",
-    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Empower: Deal !theStormbringer:D2! damage instead."
-  },
-  "theStormbringer:IcyWind": {
-    "NAME": "Icy Wind",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL thestormbringer:Empower: Apply !theStormbringer:M2! Weak to ALL enemies."
-  },
-  "theStormbringer:Blizzard": {
-    "NAME": "Blizzard",
-    "DESCRIPTION": "thestormbringer:Hail deals !M! more damage and hits !theStormbringer:M2! extra times."
-  },
-  "theStormbringer:IceBeam": {
-    "NAME": "Ice Beam",
-    "DESCRIPTION": "gain !B! Block NL Summon thestormbringer:Hail NL If the *Weather is thestormbringer:Hail *Hail remains !M! extra turns and deals !theStormbringer:M2! extra damage."
-  },
-  "theStormbringer:IcicleCrash": {
-    "NAME": "Icicle Crash",
-    "DESCRIPTION": "Deal !D! Damage to all enemies. NL Additional thestormbringer:Hail damage increases this cards damage"
-  },
-  "theStormbringer:AuroraVeil": {
-    "NAME": "Aurora Veil",
-    "DESCRIPTION": "Gain !B! Block. NL If the *Weather is thestormbringer:Hail Gain !M! thestormbringer:Prismatic\u00a0Barrier."
-  },
-  "theStormbringer:MegaBurst": {
-    "NAME": "MegaBurst",
-    "DESCRIPTION": "Gain [WaterEn] [FireEn] [IceEn] [DarkEn] [PsyEn] [ElectricEn] NL Exhaust"
-  },
   "theStormbringer:Bite": {
-    "NAME": "Bite",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak NL thestormbringer:Empower: Draw a card"
+    "NAME": "Crushing Fangs",
+    "DESCRIPTION": "Deal !D! damage. NL [theStormbringer:StyleIcon] - Apply !M! Weak."
   },
-  "theStormbringer:Crunch": {
-    "NAME": "Crunch",
-    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Empower: Deal !D! damage and apply !theStormbringer:M2! Vulnerable."
+  "theStormbringer:RazorWind": {
+    "NAME": "Brewing Storm",
+    "DESCRIPTION": "thestormbringer:Foretell NL Deal !D! damage !M! times."
+  },
+  "theStormbringer:RazorWindToken": {
+    "NAME": "Razor Wind",
+    "DESCRIPTION": "thestormbringer:Foretold NL Deal !D! damage !M! times. NL Return *Brewing *Storm to the discard pile."
+  },
+  "theStormbringer:Sawitcoming": {
+    "NAME": "Forewarn",
+    "DESCRIPTION": "thestormbringer:Foretell NL Scry !M!. NL if an enemy intends to attack Gain !B! Block."
+  },
+  "theStormbringer:SawitcomingToken": {
+    "NAME": "Saw It Coming",
+    "DESCRIPTION": "thestormbringer:Foretold NL Scry !M! NL gain !B! Block. NL Return *Forewarn to your discard pile."
+  },
+  "theStormbringer:Psybeam": {
+    "NAME": "Psybeam",
+    "DESCRIPTION": "Deal !D! damage. NL thestormbringer:Suspend a card in your discard pile for !M! turns."
+  },
+  "theStormbringer:Ripple": {
+    "NAME": "Ripple Effect",
+    "DESCRIPTION": "Gain !B! Block. NL thestormbringer:Suspend a card in your hand until you play *Ripple *Effect."
+  },
+  "theStormbringer:ThreadsofFate": {
+    "NAME": "Threads of Fate",
+    "DESCRIPTION": "Choose 1 of !M! thestormbringer:Fate cards to put on top of your draw pile. NL Scry !M!"
+  },
+  "theStormbringer:TheGravedigger": {
+    "NAME": "The Gravedigger",
+    "DESCRIPTION": "Add !M! random cards from your discard pile to your hand. NL thestormbringer:Thread : gain Vigor equal to the size of your discard pile."
+  },
+  "theStormbringer:Fateshift": {
+    "NAME": "Fateshift",
+    "DESCRIPTION": "All enemies lose HP equal to twice their thestormbringer:Destiny_Knot"
+  },
+  "theStormbringer:OblivionForm": {
+    "NAME": "Omen Form",
+    "DESCRIPTION": "When a non-Status card is Exhausted add an Ethereal copy of it to your hand."
   }
 }
 

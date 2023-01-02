@@ -1,6 +1,7 @@
 package theStormbringer.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -16,7 +17,7 @@ public class BurnPower extends AbstractPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
+    int MODIFERAMOUNT = 3;
     public BurnPower(final AbstractCreature owner, final AbstractCreature source, final int amount) {
         name = NAME;
         ID = POWER_ID;
@@ -32,12 +33,22 @@ public class BurnPower extends AbstractPower {
 
         updateDescription();
     }
+    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+        if (type == DamageInfo.DamageType.NORMAL) {
+            return (damage * (1+(MODIFERAMOUNT*amount)/100f));
+        } else {
+            return damage;
+        }
+    }
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        updateDescription();
+    }
     @Override
     public void atEndOfTurn(final boolean isplayer) {
-        addToBot(new DamageAction(owner,new DamageInfo(owner,((int)Math.floor(owner.maxHealth*0.10)), DamageInfo.DamageType.THORNS)));
         addToBot(new ReducePowerAction(owner,owner,this,1));
     }
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
+        this.description = DESCRIPTIONS[0] + MODIFERAMOUNT*amount + DESCRIPTIONS[1];
     }
 }

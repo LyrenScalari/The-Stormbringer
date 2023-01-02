@@ -53,13 +53,11 @@ public class HeavyRainEffect extends AbstractGameEffect {
         if (this.waitTimer <= 0.0F) {
             this.x += this.vX * Gdx.graphics.getDeltaTime();
             this.y -= this.vY * Gdx.graphics.getDeltaTime();
-            if (this.y < this.floorY) {
-                float pitch = 0.8F;
-                pitch -= (float) this.frostCount * 0.025F;
-                pitch += MathUtils.random(-0.2F, 0.2F);
+            if (this.y < this.floorY && renderBehind) {
+                this.isDone = true;
+            }  else if (!renderBehind && this.y < - 100){
                 this.isDone = true;
             }
-
         }
     }
 

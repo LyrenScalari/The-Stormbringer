@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -20,12 +21,18 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import theStormbringer.Icons.*;
 import theStormbringer.cards.AbstractStormbringerCard;
 import theStormbringer.characters.TheStormbringer;
+import theStormbringer.potions.FigyBerry;
+import theStormbringer.potions.LeppaBerry;
+import theStormbringer.potions.NanabBerry;
 import theStormbringer.relics.CrackedIris;
+import theStormbringer.relics.KineticGenerator;
 import theStormbringer.util.*;
 import theStormbringer.util.WeatherEffects.AbstractWeather;
 import theStormbringer.util.WeatherEffects.ClearWeather;
+import theStormbringer.util.WeatherEffects.Hailstorm;
 import theStormbringer.variables.SecondMagicNumber;
 import theStormbringer.variables.SecondDamage;
 
@@ -71,21 +78,21 @@ public class StormbringerMod implements
     public static boolean enablePlaceholder = true; // The boolean we'll be setting on/off (true/false)
     public static HashMap<String, Texture> imgMap = new HashMap();
     //This is for the in-game mod settings panel.
-    private static final String MODNAME = "The Stormbringer";
+    private static final String MODNAME = "The Ruinteller";
     private static final String AUTHOR = "Lyren"; // And pretty soon - You!
     private static final String DESCRIPTION = "A base for Slay the Spire to start your own mod from, feat. the Default.";
-    
+    public static ArrayList<AbstractNotOrb> Mana = new ArrayList<>();
     // =============== INPUT TEXTURE LOCATION =================
     
     // Colors (RGB)
     // Character Color
-    public static final Color STORMBRINGER_NAVY = CardHelper.getColor(1.0f, 1.0f, 99.0f);
+    public static final Color STORMBRINGER_SILVER = CardHelper.getColor(90.0f, 90.0f, 99.0f);
     public static AbstractWeather currentWeather;
 
     public static String modID = "theStormbringer"; //TODO: Change this.
 
     public static String makeID(String idText) {
-        return modID + ":" + idText;
+        return getModID() + ":" + idText;
     }
 
 
@@ -143,6 +150,7 @@ public class StormbringerMod implements
     public static final String Fairy_Energy_Small = "theStormbringerResources/images/512/Fairy_Small.png";
     public  static final String Fairy_Energy_Portrait = "theStormbringerResources/images/1024/Fairy_1024.png";
 
+    public static final String Generic_Energy_Small = "theStormbringerResources/images/512/Typeless_Text.png";
     public static TextureAtlas TypeEnergyAtlas = new TextureAtlas();
 
     // Character assets
@@ -151,13 +159,12 @@ public class StormbringerMod implements
     public static final String SHOULDER1 = "theStormbringerResources/images/mainChar/defaultCharacter/shoulder.png";
     public static final String SHOULDER2 = "theStormbringerResources/images/mainChar/defaultCharacter/shoulder2.png";
     public static final String CORPSE = "theStormbringerResources/images/mainChar/defaultCharacter/corpse.png";
-    
+    public static final String THE_DEFAULT_SKELETON_ATLAS = "theStormbringerResources/images/mainChar/Stormbringer/TheStormbringer.atlas";
+    public static final String THE_DEFAULT_SKELETON_JSON = "theStormbringerResources/images/mainChar/Stormbringer/TheStormbringer.json";
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "theStormbringerResources/images/Badge.png";
     
     // Atlas and JSON files for the Animations
-    public static final String THE_DEFAULT_SKELETON_ATLAS = "theStormbringerResources/images/char/defaultCharacter/skeleton.atlas";
-    public static final String THE_DEFAULT_SKELETON_JSON = "theStormbringerResources/images/char/defaultCharacter/skeleton.json";
     
     // =============== MAKE IMAGE PATHS =================
 
@@ -224,10 +231,10 @@ public class StormbringerMod implements
         
         logger.info("Done subscribing");
         
-        logger.info("Creating the color " + TheStormbringer.Enums.COLOR_NAVY.toString());
+        logger.info("Creating the color " + TheStormbringer.Enums.COLOR_SILVER.toString());
         
-        BaseMod.addColor(TheStormbringer.Enums.COLOR_NAVY, STORMBRINGER_NAVY, STORMBRINGER_NAVY, STORMBRINGER_NAVY,
-                STORMBRINGER_NAVY, STORMBRINGER_NAVY, STORMBRINGER_NAVY, STORMBRINGER_NAVY,
+        BaseMod.addColor(TheStormbringer.Enums.COLOR_SILVER, STORMBRINGER_SILVER, STORMBRINGER_SILVER, STORMBRINGER_SILVER,
+                STORMBRINGER_SILVER, STORMBRINGER_SILVER, STORMBRINGER_SILVER, STORMBRINGER_SILVER,
                 ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
                 ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
                 ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
@@ -363,6 +370,7 @@ public class StormbringerMod implements
         TypeEnergyAtlas.addRegion("[DarkEn]",ImageMaster.loadImage(Dark_Energy_Small),0,0,22,22);
         TypeEnergyAtlas.addRegion("[PsyEn]",ImageMaster.loadImage(Psy_Energy_Small),0,0,22,22);
         TypeEnergyAtlas.addRegion("[FaeEn]",ImageMaster.loadImage(Fairy_Energy_Small),0,0,22,22);
+        TypeEnergyAtlas.addRegion("[TypelessEn]",ImageMaster.loadImage(Generic_Energy_Small),0,0,22,22);
         TypeEnergyAtlas.addRegion("Fire",ImageMaster.loadImage("theStormbringerResources/images/FireMana.png"),0,0,25,25);
         TypeEnergyAtlas.addRegion("Water",ImageMaster.loadImage("theStormbringerResources/images/WaterMana.png"),0,0,25,25);
         TypeEnergyAtlas.addRegion("Electric",ImageMaster.loadImage("theStormbringerResources/images/ElectricMana.png"),0,0,25,25);
@@ -404,7 +412,9 @@ public class StormbringerMod implements
     
     public void receiveEditPotions() {
         logger.info("Beginning to edit potions");
-        
+        BaseMod.addPotion(NanabBerry.class,Color.WHITE.cpy(),null,Color.LIGHT_GRAY.cpy(),NanabBerry.POTION_ID,TheStormbringer.Enums.THE_STORMBRINGER);
+        BaseMod.addPotion(FigyBerry.class,Color.WHITE.cpy(),null,Color.LIGHT_GRAY.cpy(),FigyBerry.POTION_ID,TheStormbringer.Enums.THE_STORMBRINGER);
+        BaseMod.addPotion(LeppaBerry.class,Color.WHITE.cpy(),null,Color.LIGHT_GRAY.cpy(),LeppaBerry.POTION_ID,TheStormbringer.Enums.THE_STORMBRINGER);
         // Class Specific Potion. If you want your potion to not be class-specific,
         // just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT".
         // Remember, you can press ctrl+P inside parentheses like addPotions)
@@ -420,7 +430,8 @@ public class StormbringerMod implements
     @Override
     public void receiveEditRelics() {
         logger.info("Adding relics");
-        BaseMod.addRelicToCustomPool(new CrackedIris(), TheStormbringer.Enums.COLOR_NAVY);
+        BaseMod.addRelicToCustomPool(new CrackedIris(), TheStormbringer.Enums.COLOR_SILVER);
+        BaseMod.addRelicToCustomPool(new KineticGenerator(), TheStormbringer.Enums.COLOR_SILVER);
         // Take a look at https://github.com/daviscook477/BaseMod/wiki/AutoAdd
         // as well as
         // https://github.com/kiooeht/Bard/blob/e023c4089cc347c60331c78c6415f489d19b6eb9/src/main/java/com/evacipated/cardcrawl/mod/bard/BardMod.java#L319
@@ -452,6 +463,11 @@ public class StormbringerMod implements
         // Add the Custom Dynamic variables
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
+        CustomIconHelper.addCustomIcon(Style.get());
+        CustomIconHelper.addCustomIcon(Foretell.get());
+        CustomIconHelper.addCustomIcon(FireIcon.get());
+        CustomIconHelper.addCustomIcon(IceIcon.get());
+        CustomIconHelper.addCustomIcon(LightningIcon.get());
         logger.info("Adding cards");
         // Add the cards
         // Don't delete these default cards yet. You need 1 of each type and rarity (technically) for your game not to crash
@@ -467,7 +483,7 @@ public class StormbringerMod implements
         //TODO: Rename the "StormbringerMod" with the modid in your ModTheSpire.json file
         //TODO: The artifact mentioned in ModTheSpire.json is the artifactId in pom.xml you should've edited earlier
         new AutoAdd("theStormbringer") // ${project.artifactId}
-            .packageFilter(AbstractStormbringerCard.class) // filters to any class in the same package as AbstractStormbringerCard, nested packages included
+            .packageFilter(AbstractStormbringerCard.class) // filters to any class in the same package as AbstractStormbringerCard, nested packages include
             .setDefaultSeen(true)
             .cards();
 
@@ -508,9 +524,10 @@ public class StormbringerMod implements
         // CharacterStrings
         BaseMod.loadCustomStringsFile(CharacterStrings.class,
                 getModID() + "Resources/localization/eng/Charstrings.json");
-
+        BaseMod.loadCustomStringsFile(OrbStrings.class,
+                getModID() + "Resources/localization/eng/OrbStrings.json");
         BaseMod.loadCustomStringsFile(StanceStrings.class, getModID() + "Resources/localization/eng/Stancestrings.json");
-        
+        BaseMod.loadCustomStringsFile(PotionStrings.class,  getModID() + "Resources/localization/eng/Potionstrings.json");
         logger.info("Done edittting strings");
     }
     
@@ -553,9 +570,12 @@ public class StormbringerMod implements
     public void receivePostBattle(AbstractRoom abstractRoom) {
         currentWeather = new ClearWeather();
         TypeEnergyHelper.currentMana.clear();
+        Mana.clear();
     }
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         TypeEnergyHelper.currentMana.clear();
+        Mana.clear();
+        Hailstorm.damage = 2;
     }
 }

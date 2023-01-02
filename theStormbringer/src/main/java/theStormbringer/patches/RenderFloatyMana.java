@@ -12,10 +12,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import theStormbringer.util.TypeEnergyHelper;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import static theStormbringer.StormbringerMod.TypeEnergyAtlas;
@@ -26,9 +28,9 @@ import static theStormbringer.util.TypeEnergyHelper.*;
 public class RenderFloatyMana {
     public static float angleSpeed = 0.10f;
     private static float angle;
-    private static  float dy = 110;
+    private static  float dy = 220;
     public static  float dx = 0;
-    private static  float dy2 = 200;
+    private static  float dy2 = 210;
     public static  float dx2 = 0;
     private static final float renderScale = 2f;
     private static float particleTimer;
@@ -59,17 +61,8 @@ public class RenderFloatyMana {
         for(Map.Entry<TypeEnergyHelper.Mana,Integer> e : TypeEnergyHelper.currentMana.entrySet()){
             TextureAtlas.AtlasRegion img;
             float circleX = __instance.hb.cX + (float)(dy2*Math.cos((Math.toRadians(a+angle))));
-            float circleY = (__instance.hb.cY-50f) + (float)(dy2*Math.sin(Math.toRadians(a+angle)));
+            float circleY = (__instance.hb.cY+25) + (float)(dy*Math.sin(Math.toRadians(a+angle)));
             switch (e.getKey()) {
-                case Water:
-                    img = TypeEnergyAtlas.findRegion("Water");
-                    break;
-                case Fire:
-                    img = TypeEnergyAtlas.findRegion("Fire");
-                    break;
-                case Ice:
-                    img = TypeEnergyAtlas.findRegion("Ice");
-                    break;
                 case Dark:
                     img = TypeEnergyAtlas.findRegion("Dark");
                     break;
@@ -82,18 +75,17 @@ public class RenderFloatyMana {
                 case Fairy:
                     img = TypeEnergyAtlas.findRegion("Fairy");
                     break;
-                case Electric:
-                    img = TypeEnergyAtlas.findRegion("Electric");
-                    break;
                 default:
                     throw new IllegalStateException("Unexpected mana type");
             }
-            sb.draw(img, circleX - img.packedWidth / 2f, circleY - img.packedHeight / 2f,
-                    img.packedWidth / 2, img.packedHeight / 2,
-                    img.packedWidth,img.packedHeight,renderScale * Settings.scale, renderScale * Settings.scale,0);
-            FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, e.getValue() + "", circleX + (img.packedWidth-6), circleY - img.packedHeight /2f
-                    , Settings.CREAM_COLOR);
-            a += da;
+            if (e.getValue() != 0) {
+                sb.draw(img, circleX - img.packedWidth / 2f, circleY - img.packedHeight / 2f,
+                        img.packedWidth / 2, img.packedHeight / 2,
+                        img.packedWidth, img.packedHeight, renderScale * Settings.scale, renderScale * Settings.scale, 0);
+                FontHelper.renderFont(sb, FontHelper.SCP_cardEnergyFont, e.getValue() + "", circleX + (img.packedWidth - 6), circleY - img.packedHeight / 2f
+                        , Settings.CREAM_COLOR);
+                a += da;
+            }
         }
         if (particleTimer < 0.0F) {
             particleTimer = INTERVAL/angleSpeed;

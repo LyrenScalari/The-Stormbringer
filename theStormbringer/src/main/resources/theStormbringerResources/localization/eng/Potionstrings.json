@@ -1,0 +1,18 @@
+{
+  "theStormbringer:NanabBerry": {
+    "NAME": "Nanab Berry",
+    "DESCRIPTIONS": ["Gain #b"," #yVigor and #yHydration"]
+  },
+  "theStormbringer:LeppaBerry": {
+    "NAME": "Leppa Berry",
+    "DESCRIPTIONS": ["Shuffle your #yExhaust pile into your draw pile"]
+  },
+  "theStormbringer:FigyBerry": {
+    "NAME": "Figy Berry",
+    "DESCRIPTIONS": ["This Item is used after falling under #b25% HP. NL Heal #b"," and become #yConfused."]
+  },
+  "theStormbringer:EnigmaBerry": {
+    "NAME": "Enigma Berry",
+    "DESCRIPTIONS": ["This Item is used after you lose 15 or more HP at once Heal #b25% of your HP"]
+  }
+}

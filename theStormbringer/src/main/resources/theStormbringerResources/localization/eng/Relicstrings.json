@@ -22,10 +22,24 @@
     ]
   },
   "theStormbringer:CrackedIris": {
-    "NAME": "Cracked Iris",
-    "FLAVOR": "Fragments of a bleak future can be seen inside this broken Scrying Orb.",
+    "NAME": "Super Luck",
+    "FLAVOR": "Luck is a Skill.",
     "DESCRIPTIONS": [
-      "At the start of each combat, Summon a Random #yWeather."
+      "Every time you play #b2 skills in a single turn, gain #b3 Vigor"
+    ]
+  },
+  "theStormbringer:KineticGenerator": {
+    "NAME": "Kinetic Generator",
+    "FLAVOR": "Magic from the mundane",
+    "DESCRIPTIONS": [
+      "Every time you play #b2 Basic Strikes, Defends or non-Ruinteller cards gain #b1 #yColorless #ythestormbringer:Mana"
+    ]
+  },
+  "theStormbringer:Nanab": {
+    "NAME": "Nanab Berry",
+    "FLAVOR": "A bitter-sweet fruit from the world you called home. Strange to see it here.",
+    "DESCRIPTIONS": [
+      "On the first turn of combat gain 4 #yVigor and #yHydration"
     ]
   },
   "theStormbringer:BottledPlaceholderRelic": {

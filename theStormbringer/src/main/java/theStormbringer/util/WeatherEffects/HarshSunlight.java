@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.StanceStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
@@ -21,7 +22,10 @@ import theStormbringer.VFX.HarshSunHaloEffect;
 import theStormbringer.VFX.HarshSunlightEffect;
 import theStormbringer.VFX.HeavyRainEffect;
 import theStormbringer.VFX.SunFlareEffect;
+import theStormbringer.actions.ChangeWeatherAction;
+import theStormbringer.powers.DroughtPower;
 import theStormbringer.powers.ResistancePower;
+import theStormbringer.powers.SolarPower;
 import theStormbringer.util.Wiz;
 
 import javax.smartcardio.Card;
@@ -44,6 +48,17 @@ public class HarshSunlight extends AbstractWeather {
     @Override
     public String updateDescription() {
         return description;
+    }
+    public void atStartOfTurn() {
+        AbstractPower drought = AbstractDungeon.player.getPower(DroughtPower.POWER_ID);
+        if (drought != null){
+            drought.onSpecificTrigger();
+        }
+        AbstractPower solarpower = AbstractDungeon.player.getPower(SolarPower.POWER_ID);
+        if (solarpower != null){
+            solarpower.onSpecificTrigger();
+        }
+        super.atStartOfTurn();
     }
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {

@@ -1,0 +1,53 @@
+{
+  "theStormbringer:Fire": {
+    "NAME": "Flame",
+    "DESCRIPTION": [
+      "#yPassive : Deal #b",
+      " damage to all enemies with #yHeat at the end of your turn. NL #yEvoke : deal #b", " damage to all enemies"
+    ]
+  },
+  "theStormbringer:Water": {
+    "NAME": "Mist",
+    "DESCRIPTION": [
+      "", "",
+      "",
+      "#yPassive : at the start of your turn Draw #b",
+      " card NL #yEvoke : draw #b", " cards"
+    ]
+  },
+  "theStormbringer:FireMana": {
+    "NAME": "[theStormbrnger:FireMana] Mana",
+    "DESCRIPTION": [
+      "Used to pay [theStormbrnger:FireMana] Ritual costs",
+      " NL When Spent, deal ", " damage to all enemies"
+    ]
+  },
+  "theStormbringer:WaterMana": {
+    "NAME": "[theStormbrnger:WaterMana] Mana",
+    "DESCRIPTION": [
+      "Used to pay [theStormbrnger:WaterMana] Ritual costs",
+      " NL When Spent, deal ", " damage to all enemies"
+    ]
+  },
+  "theStormbringer:IceMana": {
+    "NAME": "[theStormbrnger:IceMana] Mana",
+    "DESCRIPTION": [
+      "Used to pay [theStormbrnger:WaterMana] Ritual costs",
+      " NL When Spent, deal ", " damage to all enemies"
+    ]
+  },
+  "theStormbringer:ElectricMana": {
+    "NAME": "[theStormbrnger:LightningMana] Mana",
+    "DESCRIPTION": [
+      "Used to pay [theStormbrnger:LightningMana] Ritual costs",
+      " NL When Spent, deal ", " damage to all enemies"
+    ]
+  },
+  "theStormbringer:FairyMana": {
+    "NAME": "[theStormbrnger:FairyMana] Mana",
+    "DESCRIPTION": [
+      "Used to pay Ritual costs of any Type.",
+      " NL When Spent, deal ", " damage to all enemies"
+    ]
+  }
+}

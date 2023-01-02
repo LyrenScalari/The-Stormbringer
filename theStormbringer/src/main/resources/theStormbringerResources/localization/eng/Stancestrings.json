@@ -18,10 +18,9 @@
     ]
   },
   "theStormbringer:Hailstorm": {
-    "NAME": "Hailstorm",
+    "NAME": "Light Snowfall",
     "DESCRIPTION": [
-      "At the end of your turn deal #b", " damage to a random enemy #b",
-      " times."
+      "At the end of your turn apply #b", " #yFrostbite to all enemies."
     ]
   },
   "theStormbringer:Sandstorm": {

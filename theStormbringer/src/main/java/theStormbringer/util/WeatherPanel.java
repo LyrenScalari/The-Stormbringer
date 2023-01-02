@@ -6,7 +6,7 @@ import theStormbringer.util.WeatherEffects.ClearWeather;
 public class WeatherPanel extends EasyInfoDisplayPanel {
 
     public WeatherPanel() {
-        super(180, 900, 300);
+        super(600, 900, 1600);
     } // NOTE: X, Y, Width are all multipled by settings.scale on constructor, so use values like this.
 
     @Override

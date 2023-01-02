@@ -2,7 +2,6 @@ package theStormbringer.util;
 
 import java.util.Comparator;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -21,9 +20,11 @@ public class TypeEnergyHelper {
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
         EnumMap<Mana, Boolean> res = new EnumMap<Mana, Boolean>(Mana.class);
         for(Map.Entry<Mana,Integer> e : empowerCosts.entrySet()){
-            if(e.getKey()!=Mana.Colorless){
-                if(temp.getOrDefault(e.getKey(), 0)>e.getValue()){
+            if(e.getKey()!= Mana.Colorless){
+                if(temp.getOrDefault(e.getKey(), 0)>=e.getValue()){
                     temp.put(e.getKey(), temp.getOrDefault(e.getKey(), 0)-e.getValue());
+                    res.put(e.getKey(),true);
+                }else if (e.getValue() == -1 && temp.getOrDefault(e.getKey(), 0)>=0) {
                     res.put(e.getKey(),true);
                 } else {
                     res.put(e.getKey(),false);
@@ -54,9 +55,11 @@ public class TypeEnergyHelper {
         Map<Mana, Integer> temp = currentMana.entrySet().stream()
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
         for(Map.Entry<Mana,Integer> e : empowerCosts.entrySet()){
-            if(e.getKey()!=Mana.Colorless){
-                if(temp.getOrDefault(e.getKey(), 0)>e.getValue()){
+            if(e.getKey()!= Mana.Colorless){
+                if(temp.getOrDefault(e.getKey(), 0)>=e.getValue()){
                     temp.put(e.getKey(), temp.get(e.getKey())-e.getValue());
+                } else if (e.getValue() == -1 && temp.getOrDefault(e.getKey(), 0)>=0) {
+                    temp.put(e.getKey(), temp.get(e.getValue()));
                 } else {
                     return false;
                 }
@@ -85,11 +88,9 @@ public class TypeEnergyHelper {
     public enum Mana{
         Dark,
         Psychic,
-        Water,
-        Fire,
-        Ice,
-        Electric,
         Fairy,
-        Colorless
+        Ghost,
+        Colorless,
+        Health
     }
 }

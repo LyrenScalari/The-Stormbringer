@@ -57,6 +57,7 @@ public abstract class AbstractStormbringerCard extends CustomCard {
     public boolean upgradedSecondDamage;
     public boolean isSecondDamageModified;
     public EnumMap<TypeEnergyHelper.Mana, Integer> energyCosts = new EnumMap<>(TypeEnergyHelper.Mana.class);
+    public EnumMap<TypeEnergyHelper.Mana,Integer> ForetellCost = new EnumMap<TypeEnergyHelper.Mana, Integer>(TypeEnergyHelper.Mana.class);
     protected int[] elementCost = new int[8];
     private float rotationTimer = 0;
     private int previewIndex;
@@ -67,9 +68,9 @@ public abstract class AbstractStormbringerCard extends CustomCard {
     protected ArrayList<AbstractCard> cardToPreview = new ArrayList<>();
     private static float centerX = (float)Settings.WIDTH / 2.0F;
     private static float centerY = (float)Settings.HEIGHT / 2.0F;
-    private Color renderColor = Color.WHITE.cpy();
+    public Color renderColor = Color.WHITE.cpy();
     private boolean needsArtRefresh = false;
-    private static Texture Mana_Orb_Dark, Mana_Orb_Psychic , Mana_Orb_Water, Mana_Orb_Fire, Mana_Orb_Ice, Mana_Orb_Fairy, Mana_Orb_Normal, Mana_Orb_Electric;
+    private static Texture Style,Foretell,Mana_Orb_Dark, Mana_Orb_Psychic , Mana_Orb_Fairy, Mana_Orb_Ghost ,  Mana_Orb_Normal;
 
     public AbstractStormbringerCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
         super(cardID, "", getCardTextureString(cardID.replace(modID + ":", ""), type),
@@ -88,7 +89,7 @@ public abstract class AbstractStormbringerCard extends CustomCard {
         }
     }
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (Type == null) {
+        if (Type != null) {
             addToBot(new GainTypedEnergyAction(Type, 1));
         }
     }
@@ -240,16 +241,16 @@ public abstract class AbstractStormbringerCard extends CustomCard {
         EnumMap<TypeEnergyHelper.Mana, Boolean> hasEnoughMana = TypeEnergyHelper.hasEnoughMana(card.energyCosts);
         float drawX = card.current_x - 256.0F;
         float drawY = card.current_y - 256.0F;
-
-        if(Mana_Orb_Water == null){
-            Mana_Orb_Water = ImageMaster.loadImage("theStormbringerResources/images/512/Water_Mana.png");
-            Mana_Orb_Fire = ImageMaster.loadImage("theStormbringerResources/images/512/Fire_Mana.png");
-            Mana_Orb_Ice = ImageMaster.loadImage("theStormbringerResources/images/512/Ice_Mana.png");
+        boolean loop1 = false;
+        boolean loop2 = false;
+        if(Mana_Orb_Dark == null){
             Mana_Orb_Dark = ImageMaster.loadImage("theStormbringerResources/images/512/Dark_Mana.png");
             Mana_Orb_Normal = ImageMaster.loadImage("theStormbringerResources/images/512/Typless_Mana.png");
             Mana_Orb_Psychic = ImageMaster.loadImage("theStormbringerResources/images/512/Psychic_Mana.png");
             Mana_Orb_Fairy = ImageMaster.loadImage("theStormbringerResources/images/512/Fairy_Mana.png");
-            Mana_Orb_Electric = ImageMaster.loadImage("theStormbringerResources/images/512/Electric_Mana.png");
+            Mana_Orb_Ghost = ImageMaster.loadImage("theStormbringerResources/images/GhostMana.png");
+            Style = ImageMaster.loadImage("theStormbringerResources/images/512/Style.png");
+            Foretell = ImageMaster.loadImage("theStormbringerResources/images/512/Foretell.png");
         }
 
         if(!card.isLocked && card.isSeen) {
@@ -259,16 +260,14 @@ public abstract class AbstractStormbringerCard extends CustomCard {
             for(Map.Entry<TypeEnergyHelper.Mana,Integer> e : card.energyCosts.entrySet()){
                 TypeEnergyHelper.Mana mana = e.getKey();
                 Texture tex;
+                if (!loop1){
+                    tex = Style;
+                    Vector2 offset = new Vector2(0, -yOffset * counter);
+                    card.renderHelper(sb, card.renderColor, tex, drawX + offset.x, drawY + offset.y);
+                    loop1 = true;
+                    counter++;
+                }
                 switch (mana) {
-                    case Water:
-                        tex = Mana_Orb_Water;
-                        break;
-                    case Fire:
-                        tex = Mana_Orb_Fire;
-                        break;
-                    case Ice:
-                        tex = Mana_Orb_Ice;
-                        break;
                     case Dark:
                         tex = Mana_Orb_Dark;
                         break;
@@ -278,8 +277,8 @@ public abstract class AbstractStormbringerCard extends CustomCard {
                     case Fairy:
                         tex = Mana_Orb_Fairy;
                         break;
-                    case Electric:
-                        tex = Mana_Orb_Electric;
+                    case Ghost:
+                        tex = Mana_Orb_Ghost;
                         break;
                     case Colorless:
                         tex = Mana_Orb_Normal;
@@ -291,8 +290,11 @@ public abstract class AbstractStormbringerCard extends CustomCard {
                     Vector2 offset = new Vector2(0, -yOffset * counter);
                     offset.rotate(card.angle);
                     card.renderHelper(sb, card.renderColor, tex, drawX + offset.x, drawY + offset.y);
+                    String msg;
+                    if (card.energyCosts.get(mana) == -1){
+                        msg = "X";
+                    } else msg = card.energyCosts.get(mana) + "";
 
-                    String msg = card.energyCosts.get(mana) + "";
                     Color costColor = Color.WHITE.cpy();
                     if (AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card)){
                         if (!hasEnoughMana.get(mana)) {
@@ -310,6 +312,64 @@ public abstract class AbstractStormbringerCard extends CustomCard {
                     counter++;
                 }
             }
+            if (card instanceof AbstractForetellCard){
+                for(Map.Entry<TypeEnergyHelper.Mana,Integer> e : ((AbstractForetellCard) card).ForetellCost.entrySet()){
+                    TypeEnergyHelper.Mana mana = e.getKey();
+                    Texture tex;
+                    if (!loop2){
+                        tex = Foretell;
+                        Vector2 offset = new Vector2(0, -yOffset * counter);
+                        card.renderHelper(sb, card.renderColor, tex, drawX + offset.x, drawY + offset.y);
+                        loop2 = true;
+                        counter++;
+                    }
+                    switch (mana) {
+                        case Dark:
+                            tex = Mana_Orb_Dark;
+                            break;
+                        case Psychic:
+                            tex = Mana_Orb_Psychic;
+                            break;
+                        case Fairy:
+                            tex = Mana_Orb_Fairy;
+                            break;
+                        case Ghost:
+                            tex = Mana_Orb_Ghost;
+                            break;
+                        case Colorless:
+                            tex = Mana_Orb_Normal;
+                            break;
+                        default:
+                            throw new IllegalStateException("Unexpected mana type");
+                    }
+                    if (((AbstractForetellCard) card).ForetellCost.get(mana) != 0) {
+                        EnumMap<TypeEnergyHelper.Mana, Boolean> canFortell = TypeEnergyHelper.hasEnoughMana(card.ForetellCost);
+                        Vector2 offset = new Vector2(0, -yOffset * counter);
+                        offset.rotate(card.angle);
+                        card.renderHelper(sb, card.renderColor, tex, drawX + offset.x, drawY + offset.y);
+                        String msg;
+                        if (((AbstractForetellCard) card).ForetellCost.get(mana) == -1){
+                            msg = "X";
+                        } else msg = ((AbstractForetellCard) card).ForetellCost.get(mana) + "";
+
+                        Color costColor = Color.WHITE.cpy();
+                        if (AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card)){
+                            if (!canFortell.get(mana)) {
+                                costColor = Color.RED.cpy();
+                            } else if (alwaysFreeToCast || card.freeManaOnce) {
+                                msg = "0";
+                                costColor = Color.GREEN.cpy();
+                            }
+                        }
+
+                        FontHelper.renderRotatedText(sb, getElementFont(card), msg, card.current_x,
+                                card.current_y, -132.0F * card.drawScale * Settings.scale,
+                                129.0F * card.drawScale * Settings.scale - yOffset * counter, card.angle,
+                                true, costColor);
+                        counter++;
+                    }
+                }
+            }
         }
     }
     private void renderHelper(SpriteBatch sb, Color color, Texture img, float drawX, float drawY) {
@@ -324,7 +384,7 @@ public abstract class AbstractStormbringerCard extends CustomCard {
             ExceptionHandler.handleException(e, logger);
         }
     }
-    private static BitmapFont getElementFont(AbstractCard card) {
+    public static BitmapFont getElementFont(AbstractCard card) {
         FontHelper.cardEnergyFont_L.getData().setScale(card.drawScale * 0.75f);
         return FontHelper.cardEnergyFont_L;
     }

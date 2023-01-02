@@ -5,7 +5,7 @@
     <!--The author name(s) as they appear in MTS and any other comments are in your ModTheSpire.json-->
     <groupId>stormbringer</groupId>
     <artifactId>theStormbringer</artifactId> <!--Keep a note of this one: this is the ID used in the "auto add cards" method-->
-    <name>The Stormbringer</name>
+    <name>The Ruinteller</name>
     <version>0.0.1</version>
     <description>A Herald of calamity, marking all they touch vicious storms, earth shattering quakes strike those marked by their touch of doom.</description>
 
